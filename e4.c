@@ -5,8 +5,8 @@ char isPalindromic(int);
 
 main()
 {
-   
-   printf("%i\n",problem4(0));
+   int i,j;
+   printf("%i\n",solution(&i, &j));
 }
 
 int solution(int *i, int *j)
