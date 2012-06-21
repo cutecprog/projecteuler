@@ -13,10 +13,12 @@ main()
 {
    int i,j;
    solution(&i, &j);
-   //isPalindromic(919*915);
    printf("%i * %i = %i\n", i, j, i*j);
 }
 
+/* Limited version
+Uses isPalindromic() to find the two 3-digit integers that when multiplied together make the largest possible palindrome. Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are. 
+*/
 void solution(int *i, int *j)
 {
    for(*i=999; *i>900; --*i)
@@ -27,7 +29,9 @@ void solution(int *i, int *j)
    *j=0;
 }
 
-// Ugly version
+/* Ugly, Limited version
+Determines whether or not the arguement is a palindrome. Arguement must be 6-digits.
+*/
 char isPalindromic(int n)
 {
    int a[6], i;
