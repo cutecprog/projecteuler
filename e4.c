@@ -12,8 +12,9 @@ char isPalindromic(int);
 main()
 {
    int i,j;
-   solution(&i, &j);
-   printf("%i * %i = %i\n", i, j, i*j);
+   //solution(&i, &j);
+   isPalindromic(919*915);
+   //printf("%i * %i = %i\n", i, j, i*j);
 }
 
 void solution(int *i, int *j)
@@ -29,8 +30,13 @@ void solution(int *i, int *j)
 // Test version
 char isPalindromic(int n)
 {
-   if(n==840885) //915*919
-      return 1;
-   return 0;
+   int a[6], i;
+   for(i=0; n; i++){
+      a[i] = n%10;
+      n = n/10;
+   }
+   for(i=0; i<6; i++)
+      printf("%i ",a[i]);
+   
 }
 
