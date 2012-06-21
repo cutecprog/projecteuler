@@ -11,6 +11,8 @@ main()
 
 int solution(int *i, int *j)
 {
+   for(*i=999; *i>900; --*i)
+      printf("%i\n",*i);
    return 0;
 }
 
