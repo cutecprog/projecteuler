@@ -18,15 +18,18 @@ main()
 int solution(int range)
 {
    int i;
-   for(i=1; 1; i++) {
-      //printf("-");
+   // Every i must be divisible by 20
+   for(i=20; ; i+=20) {
       if(check(i,range))
          return i;
    }
-   return 0; // Failure to find solution
+   return 0; // Should never get here
 }
 
-/* Sanity Check */
+/* Checks if number is divisible by a range of integers (2 to range)
+Creates the condition statement:
+(n%range==0 && n%(range-1)==0 ... && n%2==0 && 1)
+*/
 char check(int n, int range)
 {
    if(range == 1)
