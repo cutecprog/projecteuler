@@ -7,14 +7,23 @@ What is the smallest positive number that is evenly divisible by all of the numb
 #include <stdio.h>
 
 char check(int, int);
+int solution(int);
 
 main()
 {
-   int n, r;
-   scanf(" %i", &n);
-   scanf(" %i", &r);
-   printf("%i %i\n", n, r);
-   printf("%i\n", check(n,r));
+   printf("%i\n", solution(20));
+}
+
+/* Brute force method */
+int solution(int range)
+{
+   int i;
+   for(i=1; 1; i++) {
+      //printf("-");
+      if(check(i,range))
+         return i;
+   }
+   return 0; // Failure to find solution
 }
 
 /* Sanity Check */
