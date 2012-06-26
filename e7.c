@@ -11,15 +11,13 @@ char isPrime(int);
 
 main()
 {
-   //printf("%i\n", solution(10001));
-   int i;
-   for(i=3; i<100; i+=2)
-      printf("%i: %i\n", i, isPrime(i));
+   printf("%i\n", solution(6));
 }
 
 int solution(int index)
 {
-   int i=3, count=0;
+   int i=3;
+   int count=2; // Skipping and precounting 2 and 3
    while(count < index) {
       i+=2; // Next odd number
       if(isPrime(i)) 
@@ -30,7 +28,7 @@ int solution(int index)
 
 /*
 Dumb force method (slightly smarter than brute force)
-Given an odd inetger greater than 2, returns if prime.
+Given an odd inetger greater than 3, returns if prime.
 */
 char isPrime(int n)
 {
@@ -38,5 +36,5 @@ char isPrime(int n)
    for(i=3; n%i; i+=2)
       if(i>=n/2)
          return 1;
-   return 0;
+   return 0; // Input was divisible by a odd number
 }
