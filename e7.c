@@ -11,7 +11,7 @@ char isPrime(int);
 
 main()
 {
-   printf("%i\n", solution(6));
+   printf("%i\n", solution(10001));
 }
 
 int solution(int index)
