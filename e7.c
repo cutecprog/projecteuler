@@ -11,14 +11,21 @@ char isPrime(int);
 
 main()
 {
-   printf("%i\n", isPrime(13));
+   //printf("%i\n", solution(10001));
+   int i;
+   for(i=3; i<100; i+=2)
+      printf("%i: %i", i, isPrime(i));
 }
 
-/* 
-*/
-int solution(int n)
+int solution(int index)
 {
-   return (3*n*n-n-2)*(n+1)*n/12;
+   int i=3, count=0;
+   while(count < index) {
+      i+=2; // Next odd number
+      if(isPrime(i)) 
+         count++;
+   }
+   return i; // i is the prime number at index.  
 }
 
 /*
@@ -28,7 +35,7 @@ Given an odd inetger greater than 2, returns if prime.
 char isPrime(int n)
 {
    int i;
-   for(i=3; n%i; i=2*i+1)
+   for(i=3; n%i; i+=2)
       if(i>=n/2)
          return 1;
    return 0;
