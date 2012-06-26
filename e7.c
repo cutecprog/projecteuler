@@ -14,7 +14,7 @@ main()
    //printf("%i\n", solution(10001));
    int i;
    for(i=3; i<100; i+=2)
-      printf("%i: %i", i, isPrime(i));
+      printf("%i: %i\n", i, isPrime(i));
 }
 
 int solution(int index)
