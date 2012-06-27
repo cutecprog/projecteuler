@@ -29,6 +29,7 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 #define ctoi(n) ((n) - '0')
 
 int solution(const char *);
+int primer(const char *, int);
 
 main()
 {
@@ -44,10 +45,34 @@ int solution(const char *N)
    int i;
    int product=1; // Should always hold the current product.
    
-   // Primer
+   // Primer loop
    for(i=0; i<5; i++)
       product *= ctoi(N[i]);
-   return product;
+   largest = product;
+   printf("%i: %i\n",i, product);
+   
+   // Main loop (note the statement i=5 is redundant and only there for clarity).
+   for(i=5; i<100; i++) {
+      if(product == 0) {
+         i+=5;     // If a digit is 0 in a product then I know that product is 0.
+         continue;
+      product = product / ctoi(N[i-5]) * ctoi(N[i]); // Shifts product over on digit.
+      printf("%i: %i\n",i, product);
+      if(product > largest)
+         largest = product;
+   }
+   return largest;
+}
+
+/* Iterative method
+Multiples 5 digits together.
+*/
+int primer(const char * N, int index)
+{
+   for(i=0; i<5; i++)
+      product *= ctoi(N[i+index]);
+   largest = product;
+   printf("%i: %i\n",i, product);
 }
 
 
