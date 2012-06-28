@@ -6,38 +6,45 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 #include <stdio.h>
 
-void solution(int *, int *);
-char isPalindromic(int);
+void solution(int *, int *, const int);
+char isPalindromic(int, const int);
 
 main()
 {
    int i,j;
-   solution(&i, &j);
+   solution(&i, &j, 10);
+   //i=0x111111;
+   //printf("%i\n", isPalindromic(i,16));
    printf("%i * %i = %i\n", i, j, i*j);
 }
 
 /* Limited version
 Uses isPalindromic() to find the two 3-digit integers that when multiplied together make the largest possible palindrome. Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are. 
 */
-void solution(int *i, int *j)
+void solution(int *i, int *j, const int BASE)
 {
-   for(*i=999; *i>900; --*i)
-      for(*j=999; *j>900; --*j)
-      if(isPalindromic(*i * *j))
+   int highbound = BASE*BASE*BASE - 1;     // if BASE==10 then highbound is 999
+   int lowbound = highbound - (BASE*BASE); // if BASE==10 then lowbound is 899
+   printf("%i %i\n", highbound, lowbound);
+   
+   for(*i=highbound; *i>lowbound; --*i)
+      for(*j=highbound; *j>lowbound; --*j)
+      if(isPalindromic(*i * *j, BASE))
          return; // *i * *j is the answer
    *i=0;
-   *j=0;
+   *j=0; // Shouldn't get here.
 }
 
 /* Ugly, Limited version
 Determines whether or not the arguement is a palindrome. Arguement must be 6-digits.
+n is the integer that is tested for palindromity.
 */
-char isPalindromic(int n)
+char isPalindromic(int n, const int BASE)
 {
    int a[6], i;
    for(i=0; n; i++){
-      a[i] = n%10;
-      n = n/10;
+      a[i] = n%BASE;
+      n = n/BASE;
    }
    if(a[0]==a[5] && a[1]==a[4] && a[2]==a[3])
       return 1;
