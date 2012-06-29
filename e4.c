@@ -63,15 +63,7 @@ char palinAux(int n, const int BASE, const int DIGITS)
       n = n/BASE;
    }
    
-   // Verbose version.
-   /*if(DIGITS%2) {
-      i=DIGITS/2 + 1;
-      j=DIGITS/2 - 1;
-   } else {
-      i=DIGITS/2;
-      j=DIGITS/2 -1;
-   }*/
-   
+   // The base idea behind i and j is that they both start at a digit and one moves up as the other moves down and they make sure those digits are the same. i and j's starting points are different relative to whether DIGITS is odd or even.
    for(i=DIGITS/2 + ((DIGITS%2) ? 1 : 0), j=DIGITS/2 -1; i<DIGITS; i++,j--) {
       isPalin = isPalin && (buffer[i] == buffer[j]);
    }
