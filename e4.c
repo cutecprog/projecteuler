@@ -12,10 +12,10 @@ char isPalindromic(int, const int);
 main()
 {
    int i,j;
-   solution(&i, &j, 10);
+   solution(&i, &j, 16);
    //i=0x111111;
    //printf("%i\n", isPalindromic(i,16));
-   printf("%i * %i = %i\n", i, j, i*j);
+   printf("%x * %x = %x\n", i, j, i*j);
 }
 
 /* Limited version
@@ -37,11 +37,12 @@ void solution(int *i, int *j, const int BASE)
 
 /* Ugly, Limited version
 Determines whether or not the arguement is a palindrome. Arguement must be 6-digits.
-n is the integer that is tested for palindromity.
+n is the integer that is tested for palindromity given a base.
 */
 char isPalindromic(int n, const int BASE)
 {
-   int a[6], i;
+   int a[6];
+   int i;
    for(i=0; n; i++){
       a[i] = n%BASE;
       n = n/BASE;
