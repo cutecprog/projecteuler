@@ -14,7 +14,7 @@ char palinAux(int n, const int BASE, const int DIGITS);
 main()
 {
    int i,j;
-   printf("%i\n", palinAux(0x34435, 16, 5));
+   printf("Is palin: %i\n", palinAux(0x325423, 16, 6));
    //solution(&i, &j, 16);
    //i=0x111111;
    //printf("%i\n", isPalindromic(i,16));
@@ -64,19 +64,17 @@ char palinAux(int n, const int BASE, const int DIGITS)
    }
    
    // Verbose version.
-   if(DIGITS%2) {
+   /*if(DIGITS%2) {
       i=DIGITS/2 + 1;
       j=DIGITS/2 - 1;
    } else {
       i=DIGITS/2;
       j=DIGITS/2 -1;
-   }
+   }*/
    
-   for(; i<DIGITS; i++,j--) {
+   for(i=DIGITS/2 + ((DIGITS%2) ? 1 : 0), j=DIGITS/2 -1; i<DIGITS; i++,j--) {
       isPalin = isPalin && (buffer[i] == buffer[j]);
    }
-   for(i=0; i<DIGITS; i++)
-      printf("%i\n", buffer[i]);
    
    free(buffer);
    return isPalin;  
