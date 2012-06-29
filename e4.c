@@ -5,9 +5,11 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
-void solution(int *, int *, const int);
-char isPalindromic(int, const int);
+void solution(int *i, int *j, const int BASE);
+char isPalindromic(int n, const int BASE);
+char palinAux(int n, const int BASE, const int DIGITS);
 
 main()
 {
@@ -25,7 +27,6 @@ void solution(int *i, int *j, const int BASE)
 {
    int highbound = BASE*BASE*BASE - 1;     // if BASE==10 then highbound is 999
    int lowbound = highbound - (BASE*BASE); // if BASE==10 then lowbound is 899
-   printf("%i %i\n", highbound, lowbound);
    
    for(*i=highbound; *i>lowbound; --*i)
       for(*j=highbound; *j>lowbound; --*j)
@@ -35,21 +36,34 @@ void solution(int *i, int *j, const int BASE)
    *j=0; // Shouldn't get here.
 }
 
-/* Ugly, Limited version
-Determines whether or not the arguement is a palindrome. Arguement must be 6-digits.
-n is the integer that is tested for palindromity given a base.
+/* Place holder
 */
 char isPalindromic(int n, const int BASE)
 {
-   int a[6];
+   return 0;
+}
+
+/* Iterative, general version (incomplete)
+Determines whether or not the arguement is a palindrome given a base and number of digits.
+*/
+char palinAux(int n, const int BASE, const int DIGITS)
+{
    int i;
-   for(i=0; n; i++){
-      a[i] = n%BASE;
+   // buffer points to a dynamic array of ints that holds n's seperate digits.
+   int *buffer;
+   buffer = (int *) malloc(DIGITS);
+   if (buffer==NULL) 
+      exit (1);
+  
+   for(i=0; i<DIGITS; i++){
+      buffer[i] = n%BASE;
       n = n/BASE;
    }
-   if(a[0]==a[5] && a[1]==a[4] && a[2]==a[3])
-      return 1;
-   return 0;
    
+   for(i=0; i<DIGITS; i++)
+      printf("%i\n", buffer[i]);
+   
+   free(buffer);
+   return 0;  
 }
 
