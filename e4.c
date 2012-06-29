@@ -14,7 +14,8 @@ char palinAux(int n, const int BASE, const int DIGITS);
 main()
 {
    int i,j;
-   solution(&i, &j, 16);
+   printf("%i\n", palinAux(0x34435, 16, 5));
+   //solution(&i, &j, 16);
    //i=0x111111;
    //printf("%i\n", isPalindromic(i,16));
    printf("%x * %x = %x\n", i, j, i*j);
@@ -48,22 +49,36 @@ Determines whether or not the arguement is a palindrome given a base and number 
 */
 char palinAux(int n, const int BASE, const int DIGITS)
 {
-   int i;
-   // buffer points to a dynamic array of ints that holds n's seperate digits.
-   int *buffer;
-   buffer = (int *) malloc(DIGITS);
+   int i, j;
+   char isPalin = 1; // Holds whether or not argument is a palindrome.
+
+   int *buffer; // buffer points to a dynamic array of ints that holds n's seperate digits.
+   buffer = malloc(DIGITS * sizeof(int));
+   // Sanity check.
    if (buffer==NULL) 
-      exit (1);
+      exit(1);
   
-   for(i=0; i<DIGITS; i++){
+   for(i=0; i<DIGITS; i++) {
       buffer[i] = n%BASE;
       n = n/BASE;
    }
    
+   // Verbose version.
+   if(DIGITS%2) {
+      i=DIGITS/2 + 1;
+      j=DIGITS/2 - 1;
+   } else {
+      i=DIGITS/2;
+      j=DIGITS/2 -1;
+   }
+   
+   for(; i<DIGITS; i++,j--) {
+      isPalin = isPalin && (buffer[i] == buffer[j]);
+   }
    for(i=0; i<DIGITS; i++)
       printf("%i\n", buffer[i]);
    
    free(buffer);
-   return 0;  
+   return isPalin;  
 }
 
