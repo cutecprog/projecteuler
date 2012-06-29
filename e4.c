@@ -18,7 +18,7 @@ main()
    //solution(&i, &j, 16);
    //i=0x111111;
    //printf("%i\n", isPalindromic(i,16));
-   printf("%x * %x = %x\n", i, j, i*j);
+   //printf("%x * %x = %x\n", i, j, i*j);
 }
 
 /* Limited version
