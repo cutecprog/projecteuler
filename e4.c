@@ -12,28 +12,43 @@ char isPalindromic(int n, const int BASE, const int DIGITS);
 
 main()
 {
-   int i,j;
-   printf("Is palin: %i\n", isPalindromic(0x32523, 16, 5));
-   //solution(&i, &j, 16);
+   int i,j, input;
+   //printf("Enter a number: ");
+   //scanf(" %i", &input);
+   //printf("Is palin: %i\n", isPalindromic(input, 16, 5));
+   
+   solution(&i, &j, 10, 3);
    //i=0x111111;
    //printf("%i\n", isPalindromic(i,16));
    //printf("%x * %x = %x\n", i, j, i*j);
 }
 
 /* Limited version
-Uses isPalindromic() to find the two 3-digit integers that when multiplied together make the largest possible palindrome. Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are. 
+Uses isPalindromic() to find the two 3-digit integers that when multiplied together make the largest possible palindrome. Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are.
+
+highbound = BASE^DIGITS-1
+lowbound  = BASE^(DIGITS-1)-1
+
+if(BASE==10 && DIGITS==3) {
+   highbound = 999;
+   lowbound = 99;
+}
 */
-void solution(int *i, int *j, const int BASE, const int DIGITS)
+void solution(int *r1, int *r2, const int BASE, const int DIGITS)
 {
-   int highbound = BASE*BASE*BASE - 1;     // if BASE==10 then highbound is 999
-   int lowbound = highbound - (BASE*BASE); // if BASE==10 then lowbound is 899
-   
-   for(*i=highbound; *i>lowbound; --*i)
-      for(*j=highbound; *j>lowbound; --*j)
-      if(isPalindromic(*i * *j, BASE, DIGITS))
+   int i, lowbound=1, highbound;
+   for(i=0; i<(DIGITS-1); i++)
+      lowbound*=BASE;
+   highbound = lowbound*BASE-1;
+   lowbound--;
+   printf("High: %i\nLow: %i\n", highbound, lowbound);
+   /*
+   for(*r1=highbound; *r1>lowbound; --*r1)
+      for(*r2=highbound; *r2>lowbound; --*r2)
+      if(isPalindromic(*r1 * *r2, BASE, DIGITS))
          return; // *i * *j is the answer
    *i=0;
-   *j=0; // Shouldn't get here.
+   *j=0; // Shouldn't get here.*/
 }
 
 /* Iterative, general version
