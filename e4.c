@@ -53,7 +53,8 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
    
    for(*r1=highbound; *r1>lowbound; --*r1) {
       for(*r2=highbound; *r2>lowbound; --*r2) {
-         if(isPalindromic(*r1 * *r2, BASE, DIGITS*2))
+         
+         if(isPalindromic(*r1 * *r2, BASE, DIGITS*2) && )
             return; // *i * *j is the answer
          printf("%i %i\n", *r1, *r2);
       }
