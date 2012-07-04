@@ -1,4 +1,5 @@
 /*
+Euler Problem 4:
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
@@ -14,12 +15,14 @@ main()
 {
    int i,j;
    
-   solution(&i, &j, 10, 3);
-   printf("%i * %i = %i\n", i, j, i*j);
+   solution(&i, &j, 16, 3);
+   printf("%x * %x = %x\n", i, j, i*j);
 }
 
-/* Limited version
-Uses isPalindromic() to find the two 3-digit integers that when multiplied together make the largest possible palindrome. Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are.
+/* Generic Brute Ugly version
+Uses isPalindromic() to find the two x-digit integers that when multiplied together make the largest possible palindrome. Where x is a whole number.
+
+Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are.
 
 highbound = BASE^DIGITS-1
 lowbound  = BASE^(DIGITS-1)-1
@@ -38,14 +41,18 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
       return;
    }
    
+   // Variable declaration
    int i, j, lowbound=1, highbound;
    int current, largest = -1;
+   
+   // Calucating highbound and lowbound
    for(i=0; i<(DIGITS-1); i++)
       lowbound*=BASE;
    highbound = lowbound*BASE-1;
    lowbound--;
    printf("High: %i\nLow: %i\n", highbound, lowbound);
    
+   // Calucating both integers
    for(i=highbound; i>lowbound; i--) {
       for(j=highbound; j>lowbound; j--) {
          current = i*j;
@@ -57,14 +64,14 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
       }
    }
    
-   // Sanity Check
+   // Sanity Check (largest should be -1 if not palindromes were found)
    if(largest < 0) {
       *r1=-1;
       *r2=-1;
    }
 }
 
-/* Iterative, general version
+/* Generic Dumb Ugly version
 Determines whether or not the arguement is a palindrome given a base and number of digits.
 */
 char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)
@@ -74,6 +81,7 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)
 
    int *buffer; // buffer points to a dynamic array of ints that holds n's seperate digits.
    buffer = malloc(DIGITS * sizeof(int));
+   
    // Sanity check.
    if (buffer==NULL) 
       exit(1);
