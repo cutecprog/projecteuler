@@ -12,15 +12,9 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS);
 
 main()
 {
-   int i,j, b, d;
-   //printf("Enter a number: ");
-   scanf(" %i", &b);
-   scanf(" %i", &d);
-   printf("Is palin: %i\n", isPalindromic(906609, 10, 6));
+   int i,j;
    
-   solution(&i, &j, b, d);
-   //i=0x111111;
-   //printf("%i\n", isPalindromic(i,16));
+   solution(&i, &j, 10, 3);
    printf("%i * %i = %i\n", i, j, i*j);
 }
 
@@ -44,24 +38,30 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
       return;
    }
    
-   int i, lowbound=1, highbound;
+   int i, j, lowbound=1, highbound;
+   int current, largest = -1;
    for(i=0; i<(DIGITS-1); i++)
       lowbound*=BASE;
    highbound = lowbound*BASE-1;
    lowbound--;
    printf("High: %i\nLow: %i\n", highbound, lowbound);
    
-   for(*r1=highbound; *r1>lowbound; --*r1) {
-      for(*r2=highbound; *r2>lowbound; --*r2) {
-         
-         if(isPalindromic(*r1 * *r2, BASE, DIGITS*2) && )
-            return; // *i * *j is the answer
-         printf("%i %i\n", *r1, *r2);
+   for(i=highbound; i>lowbound; i--) {
+      for(j=highbound; j>lowbound; j--) {
+         current = i*j;
+         if(isPalindromic(current, BASE, DIGITS*2) && current > largest) {
+            *r1 = i;
+            *r2 = j;
+            largest = current;
+         }
       }
-      scanf(" %i", &i);
    }
-   *r1=-1;
-   *r2=-1; // Shouldn't get here.
+   
+   // Sanity Check
+   if(largest < 0) {
+      *r1=-1;
+      *r2=-1;
+   }
 }
 
 /* Iterative, general version
