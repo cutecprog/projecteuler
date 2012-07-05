@@ -10,3 +10,5 @@ e4.c:isPalindromic()    Generic Dumb Ugly
 e5.c:solution()         Limited Dumb Readable
 e5.c:check()            Generic Brute Readable Recursive
 e6.c:solution()         Limited Graceful Readable
+e7.c:solution()         Generic Dumb Readable
+e7.c:isPrime()          Limited Dumb Ugly
