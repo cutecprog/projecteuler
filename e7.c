@@ -14,6 +14,10 @@ main()
    printf("%i\n", solution(10001));
 }
 
+/* Generic Dumb Readable
+If n is an infinitely large array that hold every prime number then this function returns 
+n[index].
+*/
 int solution(int index)
 {
    int i=3;
@@ -26,15 +30,14 @@ int solution(int index)
    return i; // i is the prime number at index.  
 }
 
-/*
-Dumb force method (slightly smarter than brute force)
-Given an odd inetger greater than 3, returns if prime.
+/* Limited Dumb Ugly
+Given an odd integer greater than 3, returns if prime.
 */
 char isPrime(int n)
 {
    int i;
    for(i=3; n%i; i+=2)
       if(i>=n/2)
-         return 1;
+         return 1; // No divisible value was found
    return 0; // Input was divisible by a odd number
 }
