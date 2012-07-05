@@ -8,7 +8,9 @@ Status
 e4.c:solution()         Generic Brute Ugly
 e4.c:isPalindromic()    Generic Dumb Ugly
 e5.c:solution()         Limited Dumb Readable
-e5.c:check()            Generic Brute Readable Recursive
+e5.c:check()            Generic Brute Readable (Recursive)
 e6.c:solution()         Limited Graceful Readable
 e7.c:solution()         Generic Dumb Readable
 e7.c:isPrime()          Limited Dumb Ugly
+e8.c:solution()         Generic Dumb Ugly
+e8.c:primer()           Limited Smart Readable (Nonessential)

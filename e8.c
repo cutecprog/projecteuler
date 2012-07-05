@@ -38,7 +38,7 @@ main()
    printf("%i\n", solution(THOUSAND_DIGIT_STRING));
 }
 
-/* Brute force
+/* Generic Dumb Ugly
 Multiplies all five digits each time. If a product is 0 then it skips 5 because it is known
 that the next five will also be 0.
 */
@@ -54,19 +54,19 @@ int solution(const char *N)
          largest=product;
       // A slight optimazation 
       if(product==0)
-         i+=4;
+         i+=4; // 4 not 5 b/c it will add 1 at the end of the loop.
    }
    return largest;
 }
 
-/* Iterative method
+/* Limited Smart Readable Nonessential
 Multiples 5 digits together.
 */
 int primer(const char *N, int index)
 {
    int i, product=1;
    for(i=0; i<5; i++)
-      product *= ctoi(N[i+index]);
+      product *= ctoi(N[i+index]); // ctoi is character to integer
    return product;
 }
 
