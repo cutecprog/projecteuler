@@ -19,7 +19,10 @@ main()
    printf("%i\n", solution(100));
 }
 
-/* Math method method 
+/*  Limited Graceful Readable
+Solved with algebra and function just calculates an arithmatic expression.
+
+Algebra Solution:
 Where sigma(1,n,{i}) == n*(n+1)/2 is true for any value of n
 and x^2 == x*x is true for any arithmatic expression of x.
 

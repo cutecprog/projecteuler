@@ -9,3 +9,4 @@ e4.c:solution()         Generic Brute Ugly
 e4.c:isPalindromic()    Generic Dumb Ugly
 e5.c:solution()         Limited Dumb Readable
 e5.c:check()            Generic Brute Readable Recursive
+e6.c:solution()         Limited Graceful Readable
