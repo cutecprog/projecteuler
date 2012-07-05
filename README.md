@@ -7,4 +7,5 @@ The naming convention is "e.\.c" eg "e4.c" for euler problem 4.
 Status
 e4.c:solution()         Generic Brute Ugly
 e4.c:isPalindromic()    Generic Dumb Ugly
-e5.c
+e5.c:solution()         Limited Dumb Readable
+e5.c:check()            Generic Brute Readable Recursive

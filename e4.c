@@ -19,7 +19,7 @@ main()
    printf("%x * %x = %x\n", i, j, i*j);
 }
 
-/* Generic Brute Ugly version
+/* Generic Brute Ugly
 Uses isPalindromic() to find the two x-digit integers that when multiplied together make the largest possible palindrome. Where x is a whole number.
 
 Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are.
@@ -71,7 +71,7 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
    }
 }
 
-/* Generic Dumb Ugly version
+/* Generic Dumb Ugly
 Determines whether or not the arguement is a palindrome given a base and number of digits.
 */
 char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)

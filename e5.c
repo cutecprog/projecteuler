@@ -6,15 +6,15 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 #include <stdio.h>
 
-char check(int, int);
 int solution(int);
+char check(int, int);
 
 main()
 {
    printf("%i\n", solution(20));
 }
 
-/* Brute force method */
+/* Limited Dumb Readable */
 int solution(int range)
 {
    int i;
@@ -26,7 +26,8 @@ int solution(int range)
    return 0; // Should never get here
 }
 
-/* Checks if number is divisible by a range of integers (2 to range)
+/* Generic Brute Readable Recursive 
+Checks if number is divisible by a range of integers (2 to range)
 Creates the condition statement:
 (n%range==0 && n%(range-1)==0 ... && n%2==0 && 1)
 */
