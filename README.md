@@ -4,4 +4,7 @@ I'm giving myself an hour a day to do these. So a lot of these problems are solv
 
 The naming convention is "e.\.c" eg "e4.c" for euler problem 4.
 
-Files with graceful solutions:
+Status
+e4.c:solution()         Generic Brute Ugly
+e4.c:isPalindromic()    Generic Dumb Ugly
+e5.c
