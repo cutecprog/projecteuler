@@ -85,14 +85,15 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)
    // Sanity check.
    if (buffer==NULL) 
       exit(1);
-  
+   
+   // Loads n's (the oprand's) digits into the array buffer.
    for(i=0; i<DIGITS; i++) {
       buffer[i] = n%BASE;
       n = n/BASE;
    }
    
-   // The base idea behind i and j is that they both start at a digit and one moves up as the other moves down and they make sure those digits are the same. i and j's starting points are different relative to whether DIGITS is odd or even.
-   for(i=DIGITS/2 + ((DIGITS%2) ? 1 : 0), j=DIGITS/2 -1; i<DIGITS; i++,j--) {
+   // Checks if n is palindromic. i and j start in the middle and go to either end of buffer.
+   for(i=DIGITS/2 + (DIGITS%2) ? 1 : 0, j=DIGITS/2 -1; i<DIGITS; i++,j--) {
       isPalin = isPalin && (buffer[i] == buffer[j]);
    }
    
