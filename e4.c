@@ -93,7 +93,7 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)
    }
    
    // Checks if n is palindromic. i and j start in the middle and go to either end of buffer.
-   for(i=DIGITS/2 + (DIGITS%2) ? 1 : 0, j=DIGITS/2 -1; i<DIGITS; i++,j--) {
+   for(i=DIGITS/2 + ((DIGITS%2) ? 1 : 0), j=DIGITS/2 -1; i<DIGITS; i++,j--) {
       isPalin = isPalin && (buffer[i] == buffer[j]);
    }
    
