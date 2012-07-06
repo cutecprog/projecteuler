@@ -13,13 +13,15 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS);
 
 main()
 {
-   int i,j;
+   int a,b,i;
    
-   solution(&i, &j, 16, 3);
-   printf("%x * %x = %x\n", i, j, i*j);
+   for(i=1; i<=6; i++) {
+      solution(&a, &b, 2, i);
+      printf("%o * %o = %o\n", a, b, a*b);
+   }
 }
 
-/* Generic Brute Ugly
+/* Generic Dumb Ugly
 Uses isPalindromic() to find the two x-digit integers that when multiplied together make the largest possible palindrome. Where x is a whole number.
 
 Note I could just return the palindrome and eliminate the need for pointers but I like know what those integers are.
@@ -49,7 +51,7 @@ void solution(int *r1, int *r2, const unsigned int BASE, const unsigned int DIGI
    for(i=0; i<(DIGITS-1); i++)
       lowbound*=BASE;
    highbound = lowbound*BASE-1;
-   lowbound--;
+   lowbound = highbound - lowbound;
    printf("High: %i\nLow: %i\n", highbound, lowbound);
    
    // Calucating both integers
