@@ -10,15 +10,17 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 void solution(int *i, int *j, const unsigned int BASE, const unsigned int DIGITS);
 char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS);
+char *itoa(int n, const unsigned int BASE);
 
 main()
 {
-   int a,b,i;
+   printf("Test\n");
    
+   /*int a,b,i;
    for(i=1; i<=6; i++) {
       solution(&a, &b, 2, i);
       printf("%o * %o = %o\n", a, b, a*b);
-   }
+   }*/
 }
 
 /* Generic Dumb Ugly
@@ -101,5 +103,13 @@ char isPalindromic(int n, const unsigned int BASE, const unsigned int DIGITS)
    
    free(buffer);
    return isPalin;
+}
+
+char *itoa(int n, const unsigned int BASE)
+{
+   char data[64];
+   int i=0;
+   
+   return data;
 }
 
