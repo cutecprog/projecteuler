@@ -11,13 +11,15 @@
 
 #include <stdio.h>
 
+# define sol(X) solution(X/3, X/3, X/3 + X%3, X)
 
 int solution(int a, int b, int c, const int X);
 
 main()
 {
         printf("Euler Problem 9\n");
-        printf("Answer: %i\n", solution(332,333,334,1000));
+        printf("Answer: %i\n", sol(1000));
+        /*printf("Answer: %i\n", solution(333,333,334,1000));*/
 }
 
 /*
@@ -31,13 +33,12 @@ main()
  *                                1 <= a <= b
  * Example:
  * X = 1000
- * a = 332, b = 333, c = 334
- * a = 331, b = 334, c = 334 (base case)
- * a = 332, b = 332, c = 335
- * a = 331, b = 333, c = 335
- * a = 330, b = 334, c = 335
- * a = 329, b = 335, c = 335 (base case)
- * a = 331, b = 332, c = 336
+ * a = 333, b = 333, c = 334
+ * a = 332, b = 334, c = 334 (base case)
+ * a = 332, b = 333, c = 335
+ * a = 331, b = 334, c = 335
+ * a = 330, b = 335, c = 335 (base case)
+ * a = 332, b = 332, c = 336
  *          . . .
  * a = 205, b = 370, c = 425
  * a = 204, b = 371, c = 425
@@ -51,7 +52,7 @@ main()
  */
 int solution(int a, int b, int c, const int X)
 {
-        printf("~ a = %i, b = %i, c = %i\n", a, b, c);
+        /*printf("~ a = %i, b = %i, c = %i\n", a, b, c);*/
         if(c == b) 
                 return solution((X - c - 1) / 2,
                                 (X - c - 1) / 2 + ((c%2) ? 0 : 1),
