@@ -25,7 +25,7 @@ main()
  */
 int solution(int a, int b, int c, const int X)
 {
-        printf("~ a = %i, b = %i, c = %i", a, b, c);
+        printf("~ a = %i, b = %i, c = %i\n", a, b, c);
         if(c == b) 
                 return solution((X - c + 1) / 2, 
                                 (X - c + 1) / 2 + (c%2) ? 0 : 1,
