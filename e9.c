@@ -11,7 +11,8 @@
 
 #include <stdio.h>
 
-# define sol(X) solution(X/3, X/3, X/3 + X%3, X)
+/* Sets the initial values for a, b, c */
+# define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
 
 int solution(int a, int b, int c, const int X);
 
