@@ -14,13 +14,13 @@
 /* Sets the initial values for a, b, c */
 # define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
 
-int solution(int a, int b, int c, const int X);
+unsigned long int solution(int a, int b, int c, const int X);
 
 main()
 {
         printf("Euler Problem 9\n");
-        printf("Answer: %i\n", sol(1000));
-        /*printf("Answer: %i\n", solution(333,333,334,1000));*/
+        printf("Answer: %lu\n", sol(1000));
+        /*printf("Answer: %lu\n", solution(333,333,334,1000));*/
 }
 
 /*
@@ -51,7 +51,7 @@ main()
  * Note:
  * a truncates while b rounds so that a + b + c = X and a <=b
  */
-int solution(int a, int b, int c, const int X)
+unsigned long int solution(int a, int b, int c, const int X)
 {
         /*printf("~ a = %i, b = %i, c = %i\n", a, b, c);*/
         if(c == b) 
