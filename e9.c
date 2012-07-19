@@ -65,21 +65,30 @@ unsigned long int solution_iterative(const int X)
                         b++;
                 }
         }
-        
-        return cleanup(a,b,c,X);
+        return cleanup(a, b, c, X);
 }
 
 /*
  * Version: 12.07.16
- * Get the raw data the algorithm puts out and makes it understandable.
+ * Get the raw data the algorithm puts out and makes it understandable. This
+ * also serves as a test.
  */
 unsigned long int cleanup(int a, int b, int c, const int X)
 {
-        if(a == 0) {
-                printf("Couldn't find solution for: %i\n", X);
-                return 0;
-        }
         printf("~ a = %i, b = %i, c = %i\n", a, b, c);
+        
+        if(a * a + b * b != c * c)
+                printf("! Is not a right triangle\n");
+                
+        if(a < 0 || b < 0 || c < 0)
+                printf("! Solution uses negative distances\n");
+                
+        if(a == 0)
+                printf("! Couldn't find solution for: %i\n", X);
+                
+        if(a + b + c != X)
+                printf("! Sum of a, b, c is %i and not %i\n", (a + b + c), X);
+                
         return a * b * c;
 }
 /*
