@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Sets the initial values for a, b, c */
+/* Sets the initial values of a, b, c for solution()*/
 # define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
 
 unsigned long int solution(int a, int b, int c, const int X);
