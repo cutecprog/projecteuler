@@ -12,48 +12,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Sets the initial values of a, b, c for solution()*/
-# define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
-
-unsigned long int solution(int a, int b, int c, const int X);
-unsigned long int solution_iterative(const int X);
-unsigned long int cleanup(int a, int b, int c, const int X);
-
+unsigned long long int solution(const int X);
+unsigned long long int cleanup(long int a, long int b, long int c, const int X);
 
 main(int argc, char *argv[])
 {
         if(argc==2) {
                 printf("Euler Problem 9\n");
-                printf("Answer: %lu\n", solution_iterative(atoi(argv[1])));
+                printf("Answer: %llu\n", solution(atoi(argv[1])));
         }
-}
-
-/*
- * Version: 12.07.16 (recursive)
- * Needs a,b,c to be setup as defined in macro sol()
- */
-unsigned long int solution(int a, int b, int c, const int X)
-{
-        //printf("~ a = %i, b = %i, c = %i\n", a, b, c);
-        if(c == b) 
-                return solution((X - c - 1) / 2,
-                                (X - c - 1) / 2 + ((c % 2) ? 0 : 1),
-                                c + 1, X);
-        if(a * a + b * b == c * c) {
-                printf("~ a = %i, b = %i, c = %i\n", a, b, c);
-                return a * b * c;
-        }
-        return solution(a-1, b+1, c, X);
 }
 
 /*
  * Version: 12.07.19 (iterative)
  */
-unsigned long int solution_iterative(const int X)
+unsigned long long int solution(const int X)
 {
-        int a = X / 3;
-        int b = X / 3;
-        int c = X / 3 + (X % 3);
+        long int a = X / 3;
+        long int b = X / 3;
+        long int c = X / 3 + (X % 3);
         
         while(a * a + b * b != c * c) {
                 if(c == b) {
@@ -73,9 +50,9 @@ unsigned long int solution_iterative(const int X)
  * Get the raw data the algorithm puts out and makes it understandable. This
  * also serves as a test.
  */
-unsigned long int cleanup(int a, int b, int c, const int X)
+unsigned long long int cleanup(long int a, long int b, long int c, const int X)
 {
-        printf("~ a = %i, b = %i, c = %i\n", a, b, c);
+        printf("~ a = %li, b = %li, c = %li\n", a, b, c);
         
         if(a * a + b * b != c * c)
                 printf("! Is not a right triangle\n");
@@ -87,7 +64,7 @@ unsigned long int cleanup(int a, int b, int c, const int X)
                 printf("! Couldn't find solution for: %i\n", X);
                 
         if(a + b + c != X)
-                printf("! Sum of a, b, c is %i and not %i\n", (a + b + c), X);
+                printf("! Sum of a, b, c is %li and not %i\n", (a + b + c), X);
                 
         return a * b * c;
 }
