@@ -10,17 +10,19 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Sets the initial values for a, b, c */
 # define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
 
 unsigned long int solution(int a, int b, int c, const int X);
 
-main()
+main(int argc, char *argv[])
 {
-        printf("Euler Problem 9\n");
-        printf("Answer: %lu\n", sol(1000));
-        /*printf("Answer: %lu\n", solution(333,333,334,1000));*/
+        if(argc==2) {
+                printf("Euler Problem 9\n");
+                printf("Answer: %lu\n", sol(atoi(argv[1])));
+        }
 }
 
 /*
@@ -58,8 +60,10 @@ unsigned long int solution(int a, int b, int c, const int X)
                 return solution((X - c - 1) / 2,
                                 (X - c - 1) / 2 + ((c%2) ? 0 : 1),
                                 c+1, X);
-        if(a * a + b * b == c * c)
+        if(a * a + b * b == c * c) {
+                printf("~ a = %i, b = %i, c = %i\n", a, b, c);
                 return a * b * c;
+        }
         return solution(a-1, b+1, c, X);
 }
 
