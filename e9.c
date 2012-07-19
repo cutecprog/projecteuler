@@ -17,6 +17,7 @@
 
 unsigned long int solution(int a, int b, int c, const int X);
 unsigned long int solution_iterative(const int X);
+unsigned long int cleanup(int a, int b, int c, const int X);
 
 
 main(int argc, char *argv[])
@@ -64,13 +65,22 @@ unsigned long int solution_iterative(const int X)
                         b++;
                 }
         }
+        
+        return cleanup(a,b,c,X);
+}
+
+/*
+ * Version: 12.07.16
+ * Get the raw data the algorithm puts out and makes it understandable.
+ */
+unsigned long int cleanup(int a, int b, int c, const int X)
+{
         if(a == 0) {
                 printf("Couldn't find solution for: %i\n", X);
                 return 0;
         }
         printf("~ a = %i, b = %i, c = %i\n", a, b, c);
         return a * b * c;
-        
 }
 /*
  * Notes:
