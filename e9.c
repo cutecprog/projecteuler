@@ -73,12 +73,21 @@ unsigned long int solution_iterative(const int X)
         int a = X / 3;
         int b = X / 3;
         int c = X / 3 + (X % 3);
-        printf("~ a = %i, b = %i, c = %i\n", a, b, c);
-        while(a * a + b * b != c * c)
-                for(a = (X - c - 1) / 2, 
-                    b = (X - c - 1) / 2 + ((c % 2) ? 0 : 1),
-                    c++; c != b; a--,b++)
-                        ;
+        
+        while(a * a + b * b != c * c) {
+                if(c == b) {
+                        a = (X - c - 1) / 2;
+                        b = (X - c - 1) / 2 + ((c % 2) ? 0 : 1);
+                        c++;
+                } else {
+                        a--;
+                        b++;
+                }
+        }
+        if(a == 0) {
+                printf("Couldn't find solution for: %i\n", X);
+                return 0;
+        }
         printf("~ a = %i, b = %i, c = %i\n", a, b, c);
         return a * b * c;
         
