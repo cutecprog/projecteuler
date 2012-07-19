@@ -16,7 +16,7 @@
 # define sol(X) solution(((X) / 3), ((X) / 3), ((X) / 3 + (X) % 3), (X))
 
 unsigned long int solution(int a, int b, int c, const int X);
-unsigned long int solution_iterative(const int X)
+unsigned long int solution_iterative(const int X);
 
 main(int argc, char *argv[])
 {
@@ -73,11 +73,11 @@ unsigned long int solution_iterative(const int X)
         int a = X / 3;
         int b = X / 3;
         int c = X / 3 + (X % 3);
-        
+        printf("~ a = %i, b = %i, c = %i\n", a, b, c);
         while(a * a + b * b != c * c)
                 for(a = (X - c - 1) / 2, 
                     b = (X - c - 1) / 2 + ((c % 2) ? 0 : 1),
-                    c = c+1; c == b; a--,b++;)
+                    c++; c != b; a--,b++)
                         ;
         printf("~ a = %i, b = %i, c = %i\n", a, b, c);
         return a * b * c;
