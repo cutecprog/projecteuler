@@ -21,13 +21,21 @@
 
 #include <stdio.h>
 
+#define TEST(func, i, o, a)                                                     \
+                o = func(i);                                                    \
+                if(o != a)                                                      \
+                        printf("! " #func "(%i) got %i but expected %i\n",      \
+                                        i, o, a)
+                                                                                
+
 void solution();
 int divisor_count(const int X);
+void test_sweep();
 
 main()
 {
-        printf("Euler Problem 11\n");
-        solution();
+        printf("Euler Problem 12\n");
+        test_sweep();
 }
 
 /*
@@ -42,5 +50,21 @@ void solution()
  */
 int divisor_count(const int X)
 {
+        return 4;
+}
+
+/*
+ * Version: 12.07.20
+ */
+void test_sweep()
+{
+        int input;
+        int output;
+        int answer;
+        
+        // divisor_count() test
+        input = 28;
+        answer = 5;
+        TEST(divisor_count, input, output, answer);        
 }
 
