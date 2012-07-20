@@ -60,6 +60,7 @@ const int DATA[20][20] = {
 main()
 {
         printf("Euler Problem 11\n");
+        printf("%i\n", DATA[17][0]);
         solution();
 }
 
@@ -75,8 +76,8 @@ void solution()
         int current;
         int largest = 0;
         
-        for(i=0; i < 17; i++) {
-                for(j=0; j < 17; j++) {
+        for(i=0; i < 20; i++) {
+                for(j=0; j < 20; j++) {
                         current = local_solution(i, j);
                         if(current > largest)
                                 largest = current;
@@ -92,6 +93,60 @@ void solution()
  */
 int local_solution(int i, int j)
 {
-        return 0;
+        int largest = 0;
+        int current;
+        // Up
+        /*if(i >= 3) {
+                largest = DATA[i][j]
+                        * DATA[i-1][j]
+                        * DATA[i-2][j]
+                        * DATA[i-3][j];
+        }*/
+        // Down
+        if(i <= 16) {
+                current = DATA[i][j]
+                        * DATA[i+1][j]
+                        * DATA[i+2][j]
+                        * DATA[i+3][j];
+                if(current > largest)
+                        largest = current;
+        }
+        // Left
+        /*if(j >= 3) {
+                current = DATA[i][j]
+                        * DATA[i][j-1]
+                        * DATA[i][j-2]
+                        * DATA[i][j-3];
+                if(current > largest)
+                        largest = current;
+        }*/
+        // Right
+        if(j <= 16) {
+                current = DATA[i][j]
+                        * DATA[i][j+1]
+                        * DATA[i][j+2]
+                        * DATA[i][j+3];
+                if(current > largest)
+                        largest = current;
+        }
+        // Down-Right
+        if(i <= 16 && j <= 16) {
+                current = DATA[i][j]
+                        * DATA[i+1][j+1]
+                        * DATA[i+2][j+1]
+                        * DATA[i+3][j+1];
+                if(current > largest)
+                        largest = current;
+        }
+        // Down-Left
+        if(i <= 16 && j >= 3) {
+                current = DATA[i][j]
+                        * DATA[i+1][j-1]
+                        * DATA[i+2][j-2]
+                        * DATA[i+3][j-3];
+                if(current > largest)
+                        largest = current;
+        }
+        return largest;
 }
 
