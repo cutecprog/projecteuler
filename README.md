@@ -14,3 +14,4 @@ e7.c:solution()         Generic Dumb Readable
 e7.c:isPrime()          Limited Dumb Ugly
 e8.c:solution()         Generic Dumb Ugly
 e8.c:primer()           Limited Smart Readable (Nonessential)
+e9.c:solution()         Generic Smart Readable
