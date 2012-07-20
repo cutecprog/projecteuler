@@ -45,7 +45,12 @@ main()
  */
 int solution(const int X)
 {
-        return -1;
+        int i;
+        int current = 0;
+        for(i=1; divisor_count(current) <= X; i++)
+                current = i * (i + 1) / 2;
+                
+        return current;
 }
 
 /*
@@ -57,6 +62,8 @@ int divisor_count(const int X)
 {
         if(X<=0)
                 return 0;
+        if(X==1)
+                return 1;
         
         int current = 0;
         int last;
@@ -102,6 +109,12 @@ void test_sweep()
         TEST(divisor_count, input, output, answer);
         input = -1;
         answer = 0;
+        TEST(divisor_count, input, output, answer);
+        input = 1;
+        answer = 1;
+        TEST(divisor_count, input, output, answer);
+        input = 36;
+        answer = 9;
         TEST(divisor_count, input, output, answer);
         
         // solution() test
