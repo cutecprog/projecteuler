@@ -70,14 +70,17 @@ int divisor_count(const int X)
         int i;
         int count = 0;
         
-        for(i = 1; i*i < X; i++) {
+        for(i = 1; i*i <= X; i++) {
                 if((X % i) == 0) {
                         last = current;
                         current = i;
+                        //printf("~ current: %i, last: %i, count: %i\n", 
+                        //        current, last, count);
+                        if(current * current == X)
+                                return count * 2 + 1;
                         if(last * current == X)
-                                break;
-                        else
-                                count++;
+                                return count * 2;
+                        count++;
                 }
         }
         
