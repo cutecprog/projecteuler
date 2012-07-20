@@ -12,25 +12,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned long long int solution(const int X);
-unsigned long long int cleanup(long int a, long int b, long int c, const int X);
+void solution(const int X);
+void cleanup(long long int a, long long int b, long long int c, const int X);
 
 main(int argc, char *argv[])
 {
         if(argc==2) {
                 printf("Euler Problem 9\n");
-                printf("Answer: %llu\n", solution(atoi(argv[1])));
+                solution(atoi(argv[1]));
         }
 }
 
 /*
  * Version: 12.07.19 (iterative)
  */
-unsigned long long int solution(const int X)
+void solution(const int X)
 {
-        long int a = X / 3;
-        long int b = X / 3;
-        long int c = X / 3 + (X % 3);
+        long long int a = X / 3;
+        long long int b = X / 3;
+        long long int c = X / 3 + (X % 3);
         
         while(a * a + b * b != c * c) {
                 if(c == b) {
@@ -42,7 +42,7 @@ unsigned long long int solution(const int X)
                         b++;
                 }
         }
-        return cleanup(a, b, c, X);
+        cleanup(a, b, c, X);
 }
 
 /*
@@ -50,9 +50,9 @@ unsigned long long int solution(const int X)
  * Get the raw data the algorithm puts out and makes it understandable. This
  * also serves as a test.
  */
-unsigned long long int cleanup(long int a, long int b, long int c, const int X)
+void cleanup(long long int a, long long int b, long long int c, const int X)
 {
-        printf("~ a = %li, b = %li, c = %li\n", a, b, c);
+        printf("~ a = %lli, b = %lli, c = %lli\n", a, b, c);
         
         if(a * a + b * b != c * c)
                 printf("! Is not a right triangle\n");
@@ -64,9 +64,7 @@ unsigned long long int cleanup(long int a, long int b, long int c, const int X)
                 printf("! Couldn't find solution for: %i\n", X);
                 
         if(a + b + c != X)
-                printf("! Sum of a, b, c is %li and not %i\n", (a + b + c), X);
-                
-        return a * b * c;
+                printf("! Sum of a, b, c is %lli and not %i\n", (a + b + c), X);
 }
 /*
  * Notes:
