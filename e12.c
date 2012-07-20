@@ -40,7 +40,7 @@ main()
 }
 
 /*
- * Version: 12.07.20
+ * Version: 12.07.20 (not complete)
  * Finds the first triangle number with over X factors.
  */
 int solution(const int X)
@@ -49,7 +49,7 @@ int solution(const int X)
 }
 
 /*
- * Version: 12.07.20
+ * Version: 12.07.20 (Generic Smart Readable)
  * Finds the number of factors that X has.
  * Note: Zero means X is not a natural number, Negative means error.
  */
@@ -58,7 +58,23 @@ int divisor_count(const int X)
         if(X<=0)
                 return 0;
         
-        return -1;
+        int current = 0;
+        int last;
+        int i;
+        int count = 0;
+        
+        for(i = 1; i*i < X; i++) {
+                if((X % i) == 0) {
+                        last = current;
+                        current = i;
+                        if(last * current == X)
+                                break;
+                        else
+                                count++;
+                }
+        }
+        
+        return count * 2;
 }
 
 /*
@@ -73,7 +89,7 @@ void test_sweep()
         
         // divisor_count() test
         input = 28;
-        answer = 5;
+        answer = 6;
         TEST(divisor_count, input, output, answer);
         input = 80;
         answer = 10;
