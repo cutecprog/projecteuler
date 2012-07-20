@@ -24,11 +24,11 @@
 #define TEST(func, i, o, a)                                                     \
                 o = func(i);                                                    \
                 if(o != a)                                                      \
-                        printf("! " #func "(%i) got %i but expected %i\n",      \
+                        printf("! " #func "(%i) returned %i but expected %i\n", \
                                         i, o, a)
                                                                                 
 
-void solution();
+int solution(const int X);
 int divisor_count(const int X);
 void test_sweep();
 
@@ -36,25 +36,34 @@ main()
 {
         printf("Euler Problem 12\n");
         test_sweep();
+        printf("Answer: %i\n", solution(500));
 }
 
 /*
  * Version: 12.07.20
+ * Finds the first triangle number with over X factors.
  */
-void solution()
+int solution(const int X)
 {
+        return -1;
 }
 
 /*
  * Version: 12.07.20
+ * Finds the number of factors that X has.
+ * Note: Zero means X is not a natural number, Negative means error.
  */
 int divisor_count(const int X)
 {
-        return 4;
+        if(X<=0)
+                return 0;
+        
+        return -1;
 }
 
 /*
  * Version: 12.07.20
+ * Test divisor_count() and solution()
  */
 void test_sweep()
 {
@@ -65,6 +74,35 @@ void test_sweep()
         // divisor_count() test
         input = 28;
         answer = 5;
-        TEST(divisor_count, input, output, answer);        
+        TEST(divisor_count, input, output, answer);
+        input = 80;
+        answer = 10;
+        TEST(divisor_count, input, output, answer);
+        input = 13;
+        answer = 2;
+        TEST(divisor_count, input, output, answer);
+        input = 0;
+        answer = 0;
+        TEST(divisor_count, input, output, answer);
+        input = -1;
+        answer = 0;
+        TEST(divisor_count, input, output, answer);
+        
+        // solution() test
+        input = 2;
+        answer = 6;
+        TEST(solution, input, output, answer);
+        input = 4;
+        answer = 28;
+        TEST(solution, input, output, answer);
+        input = 5;
+        answer = 28;
+        TEST(solution, input, output, answer);
+        input = 6;
+        answer = 36;
+        TEST(solution, input, output, answer);
+        input = 8;
+        answer = 36;
+        TEST(solution, input, output, answer);
 }
 
