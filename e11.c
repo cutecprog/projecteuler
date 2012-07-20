@@ -60,7 +60,6 @@ const int DATA[20][20] = {
 main()
 {
         printf("Euler Problem 11\n");
-        printf("%i\n", DATA[17][0]);
         solution();
 }
 
@@ -95,13 +94,6 @@ int local_solution(int i, int j)
 {
         int largest = 0;
         int current;
-        // Up
-        /*if(i >= 3) {
-                largest = DATA[i][j]
-                        * DATA[i-1][j]
-                        * DATA[i-2][j]
-                        * DATA[i-3][j];
-        }*/
         // Down
         if(i <= 16) {
                 current = DATA[i][j]
@@ -111,15 +103,6 @@ int local_solution(int i, int j)
                 if(current > largest)
                         largest = current;
         }
-        // Left
-        /*if(j >= 3) {
-                current = DATA[i][j]
-                        * DATA[i][j-1]
-                        * DATA[i][j-2]
-                        * DATA[i][j-3];
-                if(current > largest)
-                        largest = current;
-        }*/
         // Right
         if(j <= 16) {
                 current = DATA[i][j]
