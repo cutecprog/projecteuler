@@ -44,12 +44,5 @@ main()
  */
 void solution(const int X)
 {
-        int i;
-        long long int sum = 5; // Head start on the sum (2 + 3)
-        
-        for(i = 5; i < X; i+=2)
-                if(isPrime(i))
-                        sum += i;
-        printf("~ Answer: %lli\n", sum);
 }
 
