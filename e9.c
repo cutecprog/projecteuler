@@ -26,7 +26,6 @@ main(int argc, char *argv[])
 /*
  * Version: 12.07.19 (iterative)
  * Generic Smart Readable
- 
  */
 void solution(const int X)
 {
