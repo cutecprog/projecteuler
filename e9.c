@@ -24,8 +24,8 @@ main(int argc, char *argv[])
 }
 
 /*
- * Version: 12.07.19 (iterative)
- * Generic Smart Readable
+ * Version: 12.07.19 (Generic Smart Readable)
+ * Does as describe in the Notes at the botttom of the file.
  */
 void solution(const int X)
 {
@@ -47,7 +47,7 @@ void solution(const int X)
 }
 
 /*
- * Version: 12.07.16
+ * Version: 12.07.16 (Generic Brute Readable)
  * Get the raw data the algorithm puts out and makes it understandable. This
  * also serves as a test.
  */

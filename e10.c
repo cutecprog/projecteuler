@@ -16,8 +16,8 @@ main()
 }
 
 /*
- * Version: 12.07.20 
- * Print out the sum of all primes below two million
+ * Version: 12.07.20 (Generic Dumb Readable)
+ * Print out the sum of all primes below X
  */
 void solution(const int X)
 {
@@ -31,7 +31,7 @@ void solution(const int X)
 }
 
 /* 
- * Version: 12.07.20 (Limited Smart Ugly)
+ * Version: 12.07.20 (Generic Smart Ugly)
  * Given an odd integer greater than 3, returns if prime.
  */
 char isPrime(int input)

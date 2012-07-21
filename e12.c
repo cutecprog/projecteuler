@@ -40,7 +40,7 @@ main()
 }
 
 /*
- * Version: 12.07.20 (not complete)
+ * Version: 12.07.20 (Generic Smart Readable)
  * Finds the first triangle number with over X factors.
  */
 int solution(const int X)
@@ -88,7 +88,7 @@ int divisor_count(const int X)
 }
 
 /*
- * Version: 12.07.20
+ * Version: 12.07.20 (Limited Brute Readable)
  * Test divisor_count() and solution()
  */
 void test_sweep()

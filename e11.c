@@ -64,7 +64,7 @@ main()
 }
 
 /*
- * Version: 12.07.20
+ * Version: 12.07.20 (Limited Brute Readable)
  * Finds the greatest product of four adjacent numbers in any direction
  * (up, down, left, right, or diagonally) in the 20x20 grid?
  */
@@ -86,7 +86,7 @@ void solution()
 }
 
 /*
- * Version: 12.07.20
+ * Version: 12.07.20 (Limited Dumb Ugly)
  * Finds the greatest product of four adjacent numbers in any direction
  * (up, down, left, right, or diagonally) of the given address?
  */
