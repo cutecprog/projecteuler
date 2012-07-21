@@ -17,7 +17,7 @@
                         printf("! " #func "(%i) returned %i but expected %i\n", \
                                         i, o, a)
 
-int solution();
+int solution(const int *DATA);
 void test_sweep();
 
 main()
@@ -30,7 +30,7 @@ main()
 /*
  * Version:
  */
-int solution(const int X)
+int solution(const int *DATA)
 {      
         return -1;
 }
@@ -41,6 +41,6 @@ int solution(const int X)
  */
 void test_sweep()
 {
-        
+        /* I'll need to redesign my test system before I start */
 }
 
