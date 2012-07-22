@@ -18,10 +18,12 @@
                                         i, o, a)
 
 int solution(const long long int *DATA);
+char read_data(char *filename);
 void test_sweep();
 
 main()
 {    
+        long long int test = 371072875339;
         long long int *data;
         printf("Euler Problem 12\n");
         test_sweep();
@@ -36,12 +38,40 @@ int solution(const long long int *DATA)
         return -1;
 }
 
+/*
+ * Version: 12.07.22
+ * Returns error code:
+ * 0 - Successfully read file
+ * 1-100 - Error on line
+ * 101 - File not found
+ * 102 - File does not have enough data
+ * 103 - Data validation failure.
+ */
+char read_data(char *filename)
+{
+        return 103;
+}
+
 
 /*
- * Version: 
+ * Version: 12.07.22 (Limited Brute Readable)
  */
 void test_sweep()
 {
-        /* I'll need to redesign my test system before I start */
+        // Test for read_data()
+        long long int data[100];
+        char code = read_data("e13.data");
+        
+        // Interpretting error code
+        if(code >= 1 && code <= 100)
+                printf("! When reading e13.data on line %i\n", code);
+        else if(code == 101)
+                printf("! e13.data was not found in directory\n");
+        else if(code == 102)
+                printf("! e13.data does not contain 100 lines of data\n");
+        else if(code == 103)
+                printf("! Data validation failure\n");
+        else if(code != 0)
+                printf("! An unknown error code was rerturned\n");        
 }
 
