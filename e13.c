@@ -17,20 +17,21 @@
                         printf("! " #func "(%i) returned %i but expected %i\n", \
                                         i, o, a)
 
-int solution(const int *DATA);
+int solution(const long long int *DATA);
 void test_sweep();
 
 main()
-{
+{    
+        long long int *data;
         printf("Euler Problem 12\n");
         test_sweep();
-        printf("Answer: %i\n", solution());
+        printf("Answer: %i\n", solution(data));
 }
 
 /*
  * Version:
  */
-int solution(const int *DATA)
+int solution(const long long int *DATA)
 {      
         return -1;
 }
