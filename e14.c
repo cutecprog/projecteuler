@@ -61,7 +61,7 @@ unsigned int solution(const unsigned int THRESHOLD)
 }
 
 /*
- * Version: 12.07.23 (Generic Brute Readable)
+ * Version: 12.07.24 (Generic Brute Readable)
  * Returns length of recursive chain. This is simulated by an iterative loop.
  */
 int chain_length(long long int n)
@@ -80,7 +80,7 @@ int chain_length(long long int n)
 }
 
 /*
- * Version: 12.07.23
+ * Version: 12.07.24
  * Basic test for hand calculations.
  */
 void test_sweep()
