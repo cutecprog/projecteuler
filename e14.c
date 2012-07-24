@@ -36,7 +36,7 @@ main()
 {
         printf("Euler Problem 14\n");
         test_sweep();
-        printf("Answer: %i\n", solution(100000));
+        printf("Answer: %i\n", solution(1000000));
 }
 
 /*
@@ -55,31 +55,27 @@ unsigned int solution(const unsigned int THRESHOLD)
                         largest = current;
                         return_value = i;
                 }
+                printf("%i\n", i);
         }
                 
         return return_value;
 }
 
 /*
- * Version: 12.07.23
- * Set up for chain_length_aux().
+ * Version: 12.07.23 (Generic Brute Readable)
+ * Returns length of recursive chain. This is simulated by an iterative loop.
  */
 int chain_length(int n)
 {
-        return chain_length_aux(n,1);
-}
-
-/*
- * Version: 12.07.23 (Generic Brute Readable)
- * Returns length of recursive chain.
- */
-int chain_length_aux(int n, int count)
-{
-        if(n == 1)
-                return count;
-        if(n % 2)
-                return chain_length_aux(3 * n + 1, count+1);
-        return chain_length_aux(n / 2, count+1);
+        int count = 1;
+        while(n != 1) {
+                if(n % 2)
+                        n = 3 * n + 1;
+                else
+                        n /= 2;
+                count++;
+        }
+        return count;
 }
 
 /*
