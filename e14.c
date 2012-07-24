@@ -76,7 +76,6 @@ int chain_length(long long int n)
                 else
                         n /= 2;
                 count++;
-                printf("~ %lli\n",n);
                 
         }
         return count;
