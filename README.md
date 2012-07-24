@@ -23,3 +23,5 @@ e11.c:local_solution()  Limited Dumb Ugly
 e12.c:solution()        Generic Smart Readable
 e12.c:divisor_count()   Generic Smart Readable
 e12.c:test_sweep()      Limited Brute Readable
+e13.c:solution()        (not complete)
+e13.py                  (It's just a script)
