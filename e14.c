@@ -29,6 +29,7 @@
 
 unsigned int solution(const unsigned int THRESHOLD);
 int chain_length(int n);
+int chain_length_aux(int n, int count);
 void test_sweep();
 
 main()
@@ -52,11 +53,24 @@ unsigned int solution(const unsigned int THRESHOLD)
 }
 
 /*
- * Version: 12.07.23 (not complete)
+ * Version: 12.07.23
+ * Set up for chain_length_aux().
  */
 int chain_length(int n)
 {
-        return 0;
+        return chain_length_aux(n,1);
+}
+
+/*
+ * Version: 12.07.23 (Generic Brute Readable)
+ */
+int chain_length_aux(int n, int count)
+{
+        if(n == 1)
+                return count;
+        if(n % 2)
+                return chain_length_aux(3 * n + 1, count+1);
+        return chain_length_aux(n / 2, count+1);
 }
 
 /*
