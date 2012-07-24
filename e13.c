@@ -21,10 +21,16 @@ int solution(const long long int *DATA);
 char read_data(char *filename);
 void test_sweep();
 
+struct big_num {
+        unsigned char *data;
+        unsigned int size;
+        unsigned char base;
+};
+
 main()
-{    
-        long long int test = 371072875339;
-        long long int *data;
+{
+        //long long int test = 371072875339;
+        //long long int *data;
         printf("Euler Problem 12\n");
         test_sweep();
         printf("Answer: %i\n", solution(data));
@@ -72,6 +78,6 @@ void test_sweep()
         else if(code == 103)
                 printf("! Data validation failure\n");
         else if(code != 0)
-                printf("! An unknown error code was rerturned\n");        
+                printf("! An unknown error code was rerturned\n");
 }
 
