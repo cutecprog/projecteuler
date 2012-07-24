@@ -35,7 +35,7 @@ main()
 {
         printf("Euler Problem 14\n");
         test_sweep();
-        //printf("Answer: %i\n", solution(500));
+        printf("Answer: %i\n", solution(100));
 }
 
 /*
@@ -69,6 +69,31 @@ void test_sweep()
         int answer;
         
         // chain_length() test
+        input = 13;
+        answer = 10;
+        TEST(chain_length, input, output, answer);
+        input = 1;
+        answer = 1;
+        TEST(chain_length, input, output, answer);
+        input = 2;
+        answer = 2;
+        TEST(chain_length, input, output, answer);
+        input = 3;
+        answer = 8;
+        TEST(chain_length, input, output, answer);
+        input = 4;
+        answer = 3;
+        TEST(chain_length, input, output, answer);
+        input = 5;
+        answer = 6;
+        TEST(chain_length, input, output, answer);
+        input = 6;
+        answer = 9;
+        TEST(chain_length, input, output, answer);
         
+        // solution() test
+        input = 6;
+        answer = 6;
+        TEST(solution, input, output, answer);
 }
 
