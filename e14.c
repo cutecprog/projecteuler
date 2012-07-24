@@ -36,7 +36,7 @@ main()
 {
         printf("Euler Problem 14\n");
         test_sweep();
-        printf("Answer: %i\n", solution(100));
+        printf("Answer: %i\n", solution(100000));
 }
 
 /*
