@@ -35,8 +35,8 @@ main()
 {
         printf("Euler Problem 14\n");
         test_sweep();
-        printf("Test: %i\n", chain_length(113383));
-        //printf("Answer: %i\n", solution(1000000));
+        //printf("Test: %i\n", chain_length(113383));
+        printf("Answer: %i\n", solution(1000000));
 }
 
 /*
@@ -55,7 +55,6 @@ unsigned int solution(const unsigned int THRESHOLD)
                         largest = current;
                         return_value = i;
                 }
-                printf("%i\n", i);
         }
                 
         return return_value;
@@ -76,7 +75,6 @@ int chain_length(long long int n)
                 else
                         n /= 2;
                 count++;
-                
         }
         return count;
 }
