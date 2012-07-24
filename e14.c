@@ -40,16 +40,24 @@ main()
 }
 
 /*
- * Version: 12.07.24 (not complete)
+ * Version: 12.07.24 (Generic Smart Readable)
+ * Uses chain_length() to find solution.
  */
 unsigned int solution(const unsigned int THRESHOLD)
 {
         int i;
-        int current = 0;
-        for(i=1; i < THRESHOLD; i++)
-                ;
+        int largest = 0;
+        int current;
+        int return_value;
+        for(i=1; i <= THRESHOLD; i++) {
+                current = chain_length(i);
+                if(current > largest) {
+                        largest = current;
+                        return_value = i;
+                }
+        }
                 
-        return current;
+        return return_value;
 }
 
 /*
@@ -63,6 +71,7 @@ int chain_length(int n)
 
 /*
  * Version: 12.07.23 (Generic Brute Readable)
+ * Returns length of recursive chain.
  */
 int chain_length_aux(int n, int count)
 {
@@ -74,7 +83,8 @@ int chain_length_aux(int n, int count)
 }
 
 /*
- * Version: 12.07.23 (not complete)
+ * Version: 12.07.23
+ * Basic test for hand calculations.
  */
 void test_sweep()
 {
