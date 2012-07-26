@@ -8,14 +8,9 @@
  */
 
 #include <stdio.h>
-
-#define TEST(func, i, o, a)                                                     \
-                o = func(i);                                                    \
-                if(o != a)                                                      \
-                        printf("! " #func "(%i) returned %i but expected %i\n", \
-                                        i, o, a)
+#include "test_macros.h"
+#include "e15_path.h"
                                                                                 
-
 int solution(const int grid_side_length);
 void test_sweep();
 
@@ -27,7 +22,7 @@ main()
 }
 
 /*
- * Version: 12.07.25 (not complete)
+ * Version: 12.07.26 (not complete)
  */
 int solution(const int X)
 {
@@ -35,7 +30,7 @@ int solution(const int X)
 }
 
 /*
- * Version: 12.07.25 (not complete)
+ * Version: 12.07.26 (not complete)
  */
 void test_sweep()
 {
