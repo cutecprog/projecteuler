@@ -38,6 +38,8 @@ void test_sweep()
         int output;
         int answer;
         
+        struct path tmp;
+        init(&tmp, 21);
         
 }
 

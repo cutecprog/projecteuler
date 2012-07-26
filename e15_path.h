@@ -12,12 +12,14 @@ struct path {
         int size;
 };
 
-bool final_postion(const struct path *in);
-bool valid(const struct path *in);
-bool all_contiguous(const struct path *in);
-bool index_contiguous_to_next(const struct path *in, int index);
-void print_path(const struct path *in);
-void move_index_up(struct path *in);
+void init(struct path *self, int size);
+void destruct(struct path *self);
+bool final_postion(const struct path *self);
+bool valid(const struct path *self);
+bool all_contiguous(const struct path *self);
+bool index_contiguous_to_next(const struct path *self, int index);
+void print_path(const struct path *self);
+void move_index_up(struct path *self);
 
 #endif
 
