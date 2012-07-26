@@ -26,7 +26,7 @@ void destruct(struct path *self)
  * Version: 12.07.26 (not complete)
  * Returns true if path.data in final position EG 000111 if size is 3.
  */
-bool final_postion(const struct path *self)
+bool final_position(const struct path *self)
 {
         /*int i;
         for(i = 0; i < self->size; i++)

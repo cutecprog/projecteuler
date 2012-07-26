@@ -69,7 +69,10 @@ void test_sweep()
                                                 "expected %i\n", output, answer
                                                 );
         
-        // bool final_postion(const struct path *self);
+        // bool final_position(const struct path *self);
+        answer = false;
+        METHOD_TEST(final_position, &tmp, output, answer);
+        
         // bool valid(const struct path *self);
         // bool all_contiguous(const struct path *self);
         // bool index_contiguous_to_next(const struct path *self, unsigned int index);
