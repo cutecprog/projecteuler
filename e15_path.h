@@ -8,18 +8,18 @@
  * This struct along with it's function represent paths in the grid.
  */
 struct path {
-        int *data;
+        unsigned int *data;
         int size;
 };
 
-void init(struct path *self, int size);
+void init(struct path *self, unsigned int size);
 void destruct(struct path *self);
 bool final_postion(const struct path *self);
 bool valid(const struct path *self);
 bool all_contiguous(const struct path *self);
-bool index_contiguous_to_next(const struct path *self, int index);
+bool index_contiguous_to_next(const struct path *self, unsigned int index);
 void print_path(const struct path *self);
-void move_index_up(struct path *self);
+void move_index_up(struct path *self, unsigned int index);
 
 #endif
 
