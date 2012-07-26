@@ -33,6 +33,7 @@ bool final_position(const struct path *self)
                 if(self->data[i] != self->size / 2 + i) 
                         return false;
         return true;*/
+        return true;
 }
 
 /*
@@ -40,6 +41,7 @@ bool final_position(const struct path *self)
  */
 bool valid(const struct path *self)
 {
+        return true;
 }
 
 /*
@@ -47,6 +49,7 @@ bool valid(const struct path *self)
  */
 bool all_contiguous(const struct path *self)
 {
+        return true;
 }
 
 /*
@@ -54,6 +57,7 @@ bool all_contiguous(const struct path *self)
  */
 bool index_contiguous_to_next(const struct path *self, unsigned int index)
 {
+        return true;
 }
 
 /*

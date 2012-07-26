@@ -16,6 +16,7 @@ void test_sweep();
 
 main()
 {
+        int i;
         printf("Euler Problem 15\n");
         test_sweep();
         printf("Answer: %i\n", solution(500));
@@ -51,30 +52,33 @@ void test_sweep()
         int answer;
         int i;
         struct path tmp;
-        int setjmp_value;       // For try-catch
+        int setjmp_value;       // For TRY-CATCH macro
 
         
-        // void init(struct path *self, unsigned int size);
+        // Test for init()
         input = 3;
         init(&tmp, input);
         for(i = 0; i < input; i++) {
-                TRY(setjmp_value, {
+                answer = i;
+                
+                TRY (setjmp_value, {
                         output = tmp.data[i];
                 }) CATCH ({
-                        printf("! init(&tmp, %i) made tmp.data[%i] ? but "
-                                                "expected %i\n", input, i, 
-                                                answer);
+                        printf("! init(&tmp, %i) returned with tmp.data[%i] as"
+                                                " ? but expected %i\n", input,
+                                                i, answer);
+                        break;
                 })
-                answer = i;
+                
                 if(output != i) {
-                        printf("! init(&tmp, %i) made tmp.data[%i] %i but "
-                                                "expected %i\n", input, i, 
-                                                output, answer);
+                        printf("! init(&tmp, %i) returned with tmp.data[%i] as"
+                                                " %i but expected %i\n", input, 
+                                                i, output, answer);
                         break;
                 }
         }
         
-        // void destruct(struct path *self);
+        // Test for destruct()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
@@ -82,6 +86,7 @@ void test_sweep()
                 printf("! destruct(&tmp) returned with tmp.data as %i but "
                                                 "expected %i\n", output, answer
                                                 );
+                                                
         answer = 0;
         output = tmp.size;
         if(output != answer)
@@ -89,9 +94,9 @@ void test_sweep()
                                                 "expected %i\n", output, answer
                                                 );
         
-        // bool final_position(const struct path *self);
+        // Test for final_position()
         answer = false;
-        //METHOD_TEST(final_position, &tmp, output, answer);
+        METHOD_TEST(final_position, &tmp, output, answer);
         
         // bool valid(const struct path *self);
         // bool all_contiguous(const struct path *self);
