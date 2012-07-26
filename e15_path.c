@@ -5,6 +5,7 @@
  */
 void init(struct path *self, int size)
 {
+        self->size = size;
 }
 
 /*

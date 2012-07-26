@@ -40,6 +40,7 @@ void test_sweep()
         
         struct path tmp;
         init(&tmp, 21);
+        printf("Size: %i\n",tmp.size);
         
 }
 
