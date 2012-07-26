@@ -2,7 +2,7 @@
 
 def main():
         print("Euler Problem 15\n", end="")
-        print(factorial(4))
+        print(factorial(5))
 
 def factorial(x):
         product = 1
