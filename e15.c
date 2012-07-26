@@ -8,7 +8,6 @@
  */
 
 #include <stdio.h>
-#include <setjmp.h>
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
@@ -52,23 +51,20 @@ void test_sweep()
         int answer;
         int i;
         struct path tmp;
-        jmp_buf env;            // For try-catch
-        int setjmp_value;
+        int setjmp_value;       // For try-catch
 
         
         // void init(struct path *self, unsigned int size);
         input = 3;
         init(&tmp, input);
         for(i = 0; i < input; i++) {
-                setjmp_value = setjmp(env);
-                if(setjmp_value == 0) {         // try
+                TRY(setjmp_value, {
                         output = tmp.data[i];
-                        longjmp(env, 42);
-                } else {                        // catch
+                }) CATCH ({
                         printf("! init(&tmp, %i) made tmp.data[%i] ? but "
                                                 "expected %i\n", input, i, 
                                                 answer);
-                }
+                })
                 answer = i;
                 if(output != i) {
                         printf("! init(&tmp, %i) made tmp.data[%i] %i but "
