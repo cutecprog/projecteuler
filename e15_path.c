@@ -118,10 +118,8 @@ bool all_contiguous(const struct path *self)
                 return false;
             
         int i;
-        int current;
-        for(i = 1, current = self->data[0]; i < self->size; 
-                                        current = self->data[i], i++)
-                if(current + 1 != self->data[i])
+        for(i = 0; i < self->size-1; i++)
+                if(!index_contiguous_to_next(self, i))
                         return false;
         return true;
 }
