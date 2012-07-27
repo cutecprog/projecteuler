@@ -19,15 +19,35 @@ main()
         int i;
         printf("Euler Problem 15\n");
         test_sweep();
-        printf("Answer: %i\n", solution(500));
+        //printf("Answer: %i\n", solution(20));
 }
 
 /*
- * Version: 12.07.26 (not complete)
+ * Version: 12.07.27 (not complete)
  */
 int solution(const int GRID_SIDE_LENGTH)
 {
-        return -1;
+        struct path current_path;
+        init(&current_path, GRID_SIDE_LENGTH+1);
+        int i;
+        print_path(&current_path);
+        int path_count = 1;
+        
+        while(!final_path(&current_path)) {
+                if(all_contiguous(&current_path)) {
+                        move_index_up(&current_path, current_path.size-1);
+                        print_path(&current_path);
+                        path_count++;
+                } else for(i = 0; i < current_path.size-1; i++) {
+                        if(!index_contiguous_to_next(&current_path, i)) {
+                                move_index_up(&current_path, i);
+                                print_path(&current_path);
+                                path_count++;
+                                break;
+                        }
+                }
+        }
+        return path_count;
 }
 
 /*
@@ -231,10 +251,15 @@ void test_sweep()
         
         destruct(&tmp);
         
-        /*// Test for solution()
+        // Test for solution()
         input = 2;
         answer = 6;
         output = solution(input);
-        TEST(*/
+        TEST(solution(input), output, answer, return, 0x1000);
+        
+        input = 3;
+        answer = 20;
+        output = solution(input);
+        TEST(solution(input), output, answer, return, 0x1001);
 }
 

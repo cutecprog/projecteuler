@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 /*
- * Version: 12.07.26 (not complete)
- * This struct along with it's function represent paths in the grid.
+ * Version: 12.07.27
+ * This struct along with it's 'methods' represent paths in a grid.
  */
 struct path {
         unsigned int *data;

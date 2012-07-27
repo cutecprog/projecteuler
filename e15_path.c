@@ -125,7 +125,7 @@ bool all_contiguous(const struct path *self)
 }
 
 /*
- * Version: 12.07.26
+ * Version: 12.07.27
  * Does not check if valid or if after action data will be valid.
  */
 void move_index_up(struct path *self, unsigned int index)
