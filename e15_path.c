@@ -63,8 +63,9 @@ void print_path(const struct path *self)
 /*
  * Version: 12.07.27
  * Valid if:
- *      indexes are in order IE data[i] < data[i+1]
- *      all indexes are within size IE 0 <= data[i] < size
+ *      Indexes are in order IE data[i] < data[i+1]
+ *      All indexes are within size IE 0 <= data[i] < (size * 2) 
+ *              EG 000111 if size is 3
  */
 bool valid(const struct path *self)
 {
@@ -74,27 +75,31 @@ bool valid(const struct path *self)
                         return false;
         
         for(i = 0; i < self->size; i++)
-                if(self->data[i] < 0 || self->data[i] >= self->size)
+                if(self->data[i] < 0 || self->data[i] >= (self->size * 2))
                         return false;
         return true;
 }
 
 /*
- * Version: 12.07.26 (not complete)
+ * Version: 12.07.27
  * Returns true if path.data in final position EG 000111 if size is 3.
  */
-bool final_position(const struct path *self)
+bool final_path(const struct path *self)
 {
-        /*int i;
+        if(!valid(self))
+                return false;
+                
+        int i;
         for(i = 0; i < self->size; i++)
-                if(self->data[i] != self->size / 2 + i) 
+                if(self->data[i] != self->size + i) 
                         return false;
-        return true;*/
         return true;
 }
 
 /*
  * Version: 12.07.26 (not complete)
+ * Returns true if all data values are contiguous EG 2,3,4.
+ * If not valid then returns false (even if contiguous).
  */
 bool all_contiguous(const struct path *self)
 {

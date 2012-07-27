@@ -37,7 +37,7 @@ int solution(const int X)
  *      destruct()
  *      move_index_up()
  *      valid()
- *      final_position()
+ *      final_path()
  *      all_contiguous()
  *      index_contiguous_to_next()
  *
@@ -98,49 +98,101 @@ void test_sweep()
         METHOD_TEST(valid(&tmp), output, answer, return, 0x20);
         
         tmp.data[0] = 3;
-        tmp.data[1] = 1;
-        tmp.data[2] = 2;
-        answer = 0;
+        tmp.data[1] = 4;
+        tmp.data[2] = 5;
+        answer = 1;
         output = valid(&tmp);
         METHOD_TEST(valid(&tmp), output, answer, return, 0x21);
         
-        tmp.data[0] = 1;
+        tmp.data[0] = 3;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = 0;
         output = valid(&tmp);
         METHOD_TEST(valid(&tmp), output, answer, return, 0x22);
         
+        tmp.data[0] = 1;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = 0;
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x23);
+        
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 6;
         answer = 0;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x23);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x24);
         
         destruct(&tmp);
         
-        // Test for final_position()
+        // Test for final_path()
         init(&tmp, 3);
+        
+        tmp.data[0] = 6;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = false;
+        output = final_path(&tmp);
+        METHOD_TEST(final_path(&tmp), output, answer, return, 0x30);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = false;
-        output = final_position(&tmp);
-        METHOD_TEST(final_position(&tmp), output, answer, return, 0x30);
+        output = final_path(&tmp);
+        METHOD_TEST(final_path(&tmp), output, answer, return, 0x31);
         
-        /*for(i = 0; i < tmp.size; i++)
-                tmp.data[i] = tmp.size / 2 + i;
+        tmp.data[0] = 3;
+        tmp.data[1] = 4;
+        tmp.data[2] = 5;
         answer = true;
-        METHOD_TEST(final_position, &tmp, output, answer);*/
+        output = final_path(&tmp);
+        METHOD_TEST(final_path(&tmp), output, answer, return, 0x32);
         
         destruct(&tmp);
-                        
-        
-        
        
         // bool all_contiguous(const struct path *self);
+        init(&tmp, 3);
+        
+        tmp.data[0] = 6;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = false;
+        output = all_contiguous(&tmp);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x40);
+        
+        tmp.data[0] = 5;
+        tmp.data[1] = 6;
+        tmp.data[2] = 7;
+        answer = false;
+        output = all_contiguous(&tmp);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x41);
+        
+        tmp.data[0] = 0;
+        tmp.data[1] = 2;
+        tmp.data[2] = 4;
+        answer = false;
+        output = all_contiguous(&tmp);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x42);
+        
+        tmp.data[0] = 0;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = true;
+        output = all_contiguous(&tmp);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x43);
+        
+        tmp.data[0] = 2;
+        tmp.data[1] = 3;
+        tmp.data[2] = 4;
+        answer = true;
+        output = all_contiguous(&tmp);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x44);
+        
+        destruct(&tmp);
+        
         // bool index_contiguous_to_next(const struct path *self, unsigned int index);
         // void move_index_up(struct path *self, unsigned int index)
 }
