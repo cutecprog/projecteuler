@@ -103,6 +103,15 @@ bool final_path(const struct path *self)
  */
 bool all_contiguous(const struct path *self)
 {
+        if(!valid(self))
+                return false;
+            
+        int i;
+        int current;
+        for(i = 1, current = self->data[0]; i < self->size; 
+                                        current = self->data[i], i++)
+                if(current + 1 != self->data[i])
+                        return false;
         return true;
 }
 

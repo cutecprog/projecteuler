@@ -152,8 +152,15 @@ void test_sweep()
         METHOD_TEST(final_path(&tmp), output, answer, return, 0x32);
         
         destruct(&tmp);
-       
-        // bool all_contiguous(const struct path *self);
+        
+        // bool index_contiguous_to_next(const struct path *self, unsigned int index);
+        init(&tmp, 3);
+        
+        
+        
+        destruct(&tmp);
+        
+        // Test for all_contiguous()
         init(&tmp, 3);
         
         tmp.data[0] = 6;
@@ -193,7 +200,6 @@ void test_sweep()
         
         destruct(&tmp);
         
-        // bool index_contiguous_to_next(const struct path *self, unsigned int index);
         // void move_index_up(struct path *self, unsigned int index)
 }
 
