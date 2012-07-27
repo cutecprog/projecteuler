@@ -1,10 +1,14 @@
 This is my attempt at the euler project.
 
-I'm giving myselfe12.c an hour a day to do these. So a lot of these problems are solved with brute force instead of grace. On certain days I will refactor my code to be more graceful. I may switch languages and/or solve some problem in multiple languages.
+I'm giving myselfe12.c an hour a day to do these. So a lot of these problems
+are solved with brute force instead of grace. On certain days I will refactor
+my code to be more graceful. I may switch languages and/or solve some problem
+in multiple languages.
 
-The naming convention is "e.\.c" eg "e4.c" for euler problem 4.
+The naming convention is "e%i\.%s" % (problem_number, extension) eg "e4.c" for
+c code for euler problem 4. 
 
-Status
+Status (Note to self: write a status for each problem)
 e4.c:solution()         Generic Dumb Ugly
 e4.c:isPalindromic()    Generic Dumb Ugly
 e5.c:solution()         Limited Dumb Readable
