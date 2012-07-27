@@ -24,6 +24,20 @@ void destruct(struct path *self)
 
 /*
  * Version: 12.07.26 (not complete)
+ */
+void print_path(const struct path *self)
+{
+}
+
+/*
+ * Version: 12.07.26 (not complete)
+ */
+void move_index_up(struct path *self, unsigned int index)
+{
+}
+
+/*
+ * Version: 12.07.26 (not complete)
  * Returns true if path.data in final position EG 000111 if size is 3.
  */
 bool final_position(const struct path *self)
@@ -60,17 +74,4 @@ bool index_contiguous_to_next(const struct path *self, unsigned int index)
         return true;
 }
 
-/*
- * Version: 12.07.26 (not complete)
- */
-void print_path(const struct path *self)
-{
-}
-
-/*
- * Version: 12.07.26 (not complete)
- */
-void move_index_up(struct path *self, unsigned int index)
-{
-}
 

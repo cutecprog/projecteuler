@@ -67,14 +67,14 @@ void test_sweep()
                         printf("! init(&tmp, %i) returned with tmp.data[%i] as"
                                                 " ? but expected %i\n", input,
                                                 i, answer);
-                        break;
+                        return;
                 })
                 
                 if(output != i) {
                         printf("! init(&tmp, %i) returned with tmp.data[%i] as"
                                                 " %i but expected %i\n", input, 
                                                 i, output, answer);
-                        break;
+                        return;
                 }
         }
         
@@ -82,26 +82,41 @@ void test_sweep()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        if(output != answer)
+        if(output != answer) {
                 printf("! destruct(&tmp) returned with tmp.data as %i but "
                                                 "expected %i\n", output, answer
                                                 );
+                return;
+        }
                                                 
         answer = 0;
         output = tmp.size;
-        if(output != answer)
+        if(output != answer) {
                 printf("! destruct(&tmp) returned with tmp.size as %i but "
                                                 "expected %i\n", output, answer
                                                 );
+                return;
+        }
+        
+        // void print_path(const struct path *self)
+        
         
         // Test for final_position()
+        init(&tmp, 3);
         answer = false;
         METHOD_TEST(final_position, &tmp, output, answer);
+        
+        for(i = 0; i < tmp.size; i++)
+                tmp.data[i] = tmp.size / 2 + i;
+        answer = true;
+        METHOD_TEST(final_position, &tmp, output, answer);
+                        
+        
+        
         
         // bool valid(const struct path *self);
         // bool all_contiguous(const struct path *self);
         // bool index_contiguous_to_next(const struct path *self, unsigned int index);
-        // void print_path(const struct path *self);
         // void move_index_up(struct path *self, unsigned int index)
 }
 
