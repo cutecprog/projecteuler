@@ -30,17 +30,22 @@ int solution(const int GRID_SIDE_LENGTH)
         struct path current_path;
         init(&current_path, GRID_SIDE_LENGTH);
         int i;
+        printf("  ");
         print_path(&current_path);
         int path_count = 1;
         
         while(!final_path(&current_path)) {
                 if(all_contiguous(&current_path)) {
                         move_index_up(&current_path, current_path.size-1);
+                        for(i = 0; i < current_path.size-1; i++)
+                                current_path.data[i] = i;
+                        printf("~ ");
                         print_path(&current_path);
                         path_count++;
-                } else for(i = 0; i < current_path.size-1; i++) {
+                } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
                         if(!index_contiguous_to_next(&current_path, i)) {
                                 move_index_up(&current_path, i);
+                                printf("  ");
                                 print_path(&current_path);
                                 path_count++;
                                 break;
