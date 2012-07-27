@@ -37,15 +37,14 @@ int solution(const int GRID_SIDE_LENGTH)
         while(!final_path(&current_path)) {
                 if(all_contiguous(&current_path)) {
                         move_index_up(&current_path, current_path.size-1);
-                        for(i = 0; i < current_path.size-1; i++)
-                                current_path.data[i] = i;
+                        reset_up_to_index(&current_path, current_path.size-1);
                         printf("~ ");
                         print_path(&current_path);
                         path_count++;
                 } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
                         if(!index_contiguous_to_next(&current_path, i)) {
                                 move_index_up(&current_path, i);
-                                printf("  ");
+                                printf("%i ", path_count);
                                 print_path(&current_path);
                                 path_count++;
                                 break;
@@ -65,6 +64,7 @@ int solution(const int GRID_SIDE_LENGTH)
  *      index_contiguous_to_next()
  *      all_contiguous()
  *      move_index_up()
+ *      reset_up_to_index()
  *
  * Test (e15.c):
  *      solution()
@@ -252,7 +252,39 @@ void test_sweep()
         answer = 3;
         move_index_up(&tmp, input);
         output = tmp.data[input];
-        TEST(move_index_up(&tmp, i), output, answer, return, 0x60);
+        TEST(move_index_up(&tmp, input), output, answer, return, 0x60);
+        
+        destruct(&tmp);
+        
+        // Test for reset_up_to_index()
+        init(&tmp, 3);
+        
+        tmp.data[0] = 3;
+        tmp.data[1] = 4;
+        tmp.data[2] = 5;
+        input = 2;
+        reset_up_to_index(&tmp, input);
+        answer = 0;
+        output = tmp.data[0];
+        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x70);
+        answer = 1;
+        output = tmp.data[1];
+        TEST(reset_up_to_index(&tmp, input), output, answer, return, 0x70);
+        
+        tmp.data[0] = 3;
+        tmp.data[1] = 4;
+        tmp.data[2] = 5;
+        input = 3;
+        reset_up_to_index(&tmp, input);
+        answer = 0;
+        output = tmp.data[0];
+        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x71);
+        answer = 1;
+        output = tmp.data[1];
+        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x71);
+        answer = 2;
+        output = tmp.data[2];
+        TEST(reset_up_to_index(&tmp, input), output, answer, return, 0x71);
         
         destruct(&tmp);
         

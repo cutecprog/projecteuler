@@ -20,6 +20,7 @@ bool final_path(const struct path *self);
 bool index_contiguous_to_next(const struct path *self, unsigned int index);
 bool all_contiguous(const struct path *self);
 void move_index_up(struct path *self, unsigned int index);
+void reset_up_to_index(struct path *self, unsigned int index);
 
 #endif
 

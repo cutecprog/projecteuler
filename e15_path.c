@@ -133,3 +133,10 @@ void move_index_up(struct path *self, unsigned int index)
         self->data[index]++;
 }
 
+void reset_up_to_index(struct path *self, unsigned int index)
+{
+        int i;
+        for(i = 0; i < index; i++)
+                self->data[i] = i;
+}
+
