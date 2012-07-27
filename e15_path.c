@@ -61,11 +61,21 @@ void print_path(const struct path *self)
 }
 
 /*
- * Version: 12.07.26 (not complete)
+ * Version: 12.07.27
+ * Valid if:
+ *      indexes are in order IE data[i] < data[i+1]
+ *      all indexes are within size IE 0 <= data[i] < size
  */
 bool valid(const struct path *self)
 {
+        int i;
+        for(i = 0; i < self->size-1; i++)
+                if(self->data[i] >= self->data[i+1])
+                        return false;
         
+        /*for(i = 0; i < self->size-1; i++)
+                if(self->data[i] >= self->data[i+1])
+                        return false;*/
         return true;
 }
 

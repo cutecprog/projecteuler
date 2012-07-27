@@ -52,16 +52,15 @@ void test_sweep()
         
         int i;
         struct path tmp;
-        int setjmp_value;       // For TRY-CATCH macro
 
-        
         // Test for init()
         input = 3;
         TRY  {
                 init(&tmp, input);
         } CATCH {
                 printf("! init(&tmp, %i) returned with tmp.data pointing to "
-                                                "NULL\n", input);
+                                                "NULL (error code: 0)\n", input
+                                                );
                 return;
         }
         
@@ -71,8 +70,9 @@ void test_sweep()
                 
                 if(output != i) {
                         printf("! init(&tmp, %i) returned with tmp.data[%i] as"
-                                                " %i but expected %i\n", input, 
-                                                i, output, answer);
+                                                " %i but expected %i (error" 
+                                                " code: 1)\n", input, i, 
+                                                output, answer);
                         return;
                 }
         }
@@ -81,43 +81,37 @@ void test_sweep()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        if(output != answer) {
-                printf("! destruct(&tmp) returned with tmp.data as %i but "
-                                                "expected %i\n", output, answer
-                                                );
-                return;
-        }
+        METHOD_TEST(destruct(&tmp), output, answer, return, 2);
                                                 
         answer = 0;
         output = tmp.size;
-        if(output != answer) {
-                printf("! destruct(&tmp) returned with tmp.size as %i but "
-                                                "expected %i\n", output, answer
-                                                );
-                return;
-        }
+        METHOD_TEST(destruct(&tmp), output, answer, return, 3);
         
         // bool valid(const struct path *self);
         init(&tmp, 3);
         answer = 1;
-        METHOD_TEST(valid, &tmp, output, answer);
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 4);
         
         tmp.data[0] = 3;
         answer = 0;
-        METHOD_TEST(valid, &tmp, output, answer);
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 5);
         
         tmp.data[0] = 1;
         answer = 0;
-        METHOD_TEST(valid, &tmp, output, answer);
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 6);
         
         tmp.data[0] = 0;
-        tmp.size = 6;
+        tmp.data[2] = 6;
         answer = 0;
-        METHOD_TEST(valid, &tmp, output, answer);
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 7);
         
         destruct(&tmp);
         
-        // Test for final_position()
+        /*// Test for final_position()
         init(&tmp, 3);
         answer = false;
         METHOD_TEST(final_position, &tmp, output, answer);
@@ -127,7 +121,7 @@ void test_sweep()
         answer = true;
         METHOD_TEST(final_position, &tmp, output, answer);
         
-        destruct(&tmp);
+        destruct(&tmp);*/
                         
         
         
