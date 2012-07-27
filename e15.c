@@ -35,12 +35,11 @@ int solution(const int X)
  * Test (e15_path.c):
  *      init()
  *      destruct()
- *      final_position()
+ *      move_index_up()
  *      valid()
+ *      final_position()
  *      all_contiguous()
  *      index_contiguous_to_next()
- *      print_path()
- *      move_index_up()
  *
  * Test (e15.c):
  *      solution()
@@ -98,12 +97,23 @@ void test_sweep()
                 return;
         }
         
-        // print_path()
+        // bool valid(const struct path *self);
         init(&tmp, 3);
+        answer = 1;
+        METHOD_TEST(valid, &tmp, output, answer);
         
-        printf("~ ");
-        print_path(&tmp);
-        return;
+        tmp.data[0] = 3;
+        answer = 0;
+        METHOD_TEST(valid, &tmp, output, answer);
+        
+        tmp.data[0] = 1;
+        answer = 0;
+        METHOD_TEST(valid, &tmp, output, answer);
+        
+        tmp.data[0] = 0;
+        tmp.size = 6;
+        answer = 0;
+        METHOD_TEST(valid, &tmp, output, answer);
         
         destruct(&tmp);
         
@@ -121,8 +131,7 @@ void test_sweep()
                         
         
         
-        
-        // bool valid(const struct path *self);
+       
         // bool all_contiguous(const struct path *self);
         // bool index_contiguous_to_next(const struct path *self, unsigned int index);
         // void move_index_up(struct path *self, unsigned int index)
