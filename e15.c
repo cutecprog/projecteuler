@@ -11,41 +11,38 @@
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
-int solution(const int GRID_SIDE_LENGTH);
+long long int solution(const int GRID_SIDE_LENGTH);
 void test_sweep();
 
 main()
 {
         int i;
         printf("Euler Problem 15\n");
-        test_sweep();
-        //printf("Answer: %i\n", solution(20));
+        //test_sweep();
+        printf("Answer: %lli\n", solution(20));
 }
 
 /*
- * Version: 12.07.27 (not complete)
+ * Version: 12.07.27 (Generic Brute Readable)
  */
-int solution(const int GRID_SIDE_LENGTH)
+long long int solution(const int GRID_SIDE_LENGTH)
 {
         struct path current_path;
         init(&current_path, GRID_SIDE_LENGTH);
         int i;
-        printf("  ");
-        print_path(&current_path);
-        int path_count = 1;
+        long long int path_count = 1;
         
         while(!final_path(&current_path)) {
                 if(all_contiguous(&current_path)) {
-                        move_index_up(&current_path, current_path.size-1);
-                        reset_up_to_index(&current_path, current_path.size-1);
                         printf("~ ");
                         print_path(&current_path);
+                        move_index_up(&current_path, current_path.size-1);
+                        reset_up_to_index(&current_path, current_path.size-1);
                         path_count++;
                 } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
                         if(!index_contiguous_to_next(&current_path, i)) {
                                 move_index_up(&current_path, i);
-                                printf("%i ", path_count);
-                                print_path(&current_path);
+                                reset_up_to_index(&current_path, i);
                                 path_count++;
                                 break;
                         }
