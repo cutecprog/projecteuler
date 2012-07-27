@@ -73,9 +73,9 @@ bool valid(const struct path *self)
                 if(self->data[i] >= self->data[i+1])
                         return false;
         
-        /*for(i = 0; i < self->size-1; i++)
-                if(self->data[i] >= self->data[i+1])
-                        return false;*/
+        for(i = 0; i < self->size; i++)
+                if(self->data[i] < 0 || self->data[i] >= self->size)
+                        return false;
         return true;
 }
 

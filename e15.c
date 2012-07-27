@@ -59,7 +59,7 @@ void test_sweep()
                 init(&tmp, input);
         } CATCH {
                 printf("! init(&tmp, %i) returned with tmp.data pointing to "
-                                                "NULL (error code: 0)\n", input
+                                                "NULL (error code: 0x0)\n", input
                                                 );
                 return;
         }
@@ -71,7 +71,7 @@ void test_sweep()
                 if(output != i) {
                         printf("! init(&tmp, %i) returned with tmp.data[%i] as"
                                                 " %i but expected %i (error" 
-                                                " code: 1)\n", input, i, 
+                                                " code: 0x1)\n", input, i, 
                                                 output, answer);
                         return;
                 }
@@ -81,47 +81,61 @@ void test_sweep()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        METHOD_TEST(destruct(&tmp), output, answer, return, 2);
+        METHOD_TEST(destruct(&tmp), output, answer, return, 0x10);
                                                 
         answer = 0;
         output = tmp.size;
-        METHOD_TEST(destruct(&tmp), output, answer, return, 3);
+        METHOD_TEST(destruct(&tmp), output, answer, return, 0x11);
         
         // bool valid(const struct path *self);
         init(&tmp, 3);
-        answer = 1;
-        output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 4);
-        
-        tmp.data[0] = 3;
-        answer = 0;
-        output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 5);
-        
-        tmp.data[0] = 1;
-        answer = 0;
-        output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 6);
         
         tmp.data[0] = 0;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = 1;
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x20);
+        
+        tmp.data[0] = 3;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = 0;
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x21);
+        
+        tmp.data[0] = 1;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = 0;
+        output = valid(&tmp);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x22);
+        
+        tmp.data[0] = 0;
+        tmp.data[1] = 1;
         tmp.data[2] = 6;
         answer = 0;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 7);
+        METHOD_TEST(valid(&tmp), output, answer, return, 0x23);
         
         destruct(&tmp);
         
-        /*// Test for final_position()
+        // Test for final_position()
         init(&tmp, 3);
-        answer = false;
-        METHOD_TEST(final_position, &tmp, output, answer);
         
-        for(i = 0; i < tmp.size; i++)
+        tmp.data[0] = 0;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = false;
+        output = final_position(&tmp);
+        METHOD_TEST(final_position(&tmp), output, answer, return, 0x30);
+        
+        /*for(i = 0; i < tmp.size; i++)
                 tmp.data[i] = tmp.size / 2 + i;
         answer = true;
-        METHOD_TEST(final_position, &tmp, output, answer);
+        METHOD_TEST(final_position, &tmp, output, answer);*/
         
-        destruct(&tmp);*/
+        destruct(&tmp);
                         
         
         
