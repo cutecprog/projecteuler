@@ -1,0 +1,73 @@
+CPU Speed:                                      2.2 GHz
+
+Answer: 705432
+Number of init() calls:                         1
+Number of destruct() calls:                     1
+Number of print_path() calls:                   11
+Number of valid() calls:                        1410874
+Number of final_path() calls:                   705432
+Number of index_contiguous_to_next() calls:     2704000
+Number of all_contiguous() calls:               705431
+Number of move_index_up() calls:                705431
+Number of reset_up_to_index() calls:            705431
+Number of function calls:                       6936612
+Speed in seconds:                               1
+Average function cycles:                        317
+
+
+Answer: 2704156
+Number of init() calls:                         1
+Number of destruct() calls:                     1
+Number of print_path() calls:                   12
+Number of valid() calls:                        5408323
+Number of final_path() calls:                   2704156
+Number of index_contiguous_to_next() calls:     10400418
+Number of all_contiguous() calls:               2704155
+Number of move_index_up() calls:                2704155
+Number of reset_up_to_index() calls:            2704155
+Number of function calls:                       26625376
+Speed in seconds:                               1
+Average function cycles:                        82
+
+Answer: 10400600
+Number of init() calls:                         1
+Number of destruct() calls:                     1
+Number of print_path() calls:                   13
+Number of valid() calls:                        20801212
+Number of final_path() calls:                   10400600
+Number of index_contiguous_to_next() calls:     40116390
+Number of all_contiguous() calls:               10400599
+Number of move_index_up() calls:                10400599
+Number of reset_up_to_index() calls:            10400599
+Number of function calls:                       102520014
+Speed in seconds:                               7
+Average function cycles:                        150
+
+Answer: 40116600
+Number of init() calls:                         1
+Number of destruct() calls:                     1
+Number of print_path() calls:                   14
+Number of valid() calls:                        80233213
+Number of final_path() calls:                   40116600
+Number of index_contiguous_to_next() calls:     155117280
+Number of all_contiguous() calls:               40116599
+Number of move_index_up() calls:                40116599
+Number of reset_up_to_index() calls:            40116599
+Number of function calls:                       395816906
+Speed in seconds:                               18
+Average function cycles:                        100
+
+Answer: 155117520
+Number of init() calls:                         1
+Number of destruct() calls:                     1
+Number of print_path() calls:                   15
+Number of valid() calls:                        310235054
+Number of final_path() calls:                   155117520
+Number of index_contiguous_to_next() calls:     601080118
+Number of all_contiguous() calls:               155117519
+Number of move_index_up() calls:                155117519
+Number of reset_up_to_index() calls:            155117519
+Number of function calls:                       1531785266
+Speed in seconds:                               121
+Average function cycles:                        173
+

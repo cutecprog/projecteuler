@@ -59,8 +59,6 @@ long long int solution(const int GRID_SIDE_LENGTH)
         TRY {
                 while(!final_path(&current_path)) {
                         if(all_contiguous(&current_path)) {
-                                //printf("~ ");
-                                //print_path(&current_path);
                                 move_index_up(&current_path, current_path.size-1);
                                 reset_up_to_index(&current_path, current_path.size-1);
                                 path_count++;
