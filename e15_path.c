@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "test_macros.h"
 #include "e15_path.h"
@@ -39,6 +40,23 @@ void destruct(struct path *self)
  */
 void print_path(const struct path *self)
 {
+        int i;
+        int j;
+        
+        if(!valid(self)) {
+                printf("Data not valid.\n");
+        }
+        
+        for(i = 0, j = 0; i < (self->size * 2); i++) {
+                if(self->data[j] == i) {
+                        printf("1");
+                        j++;
+                } else {
+                        printf("0");
+                }
+        }
+        
+        printf("\n");
 }
 
 /*

@@ -50,6 +50,7 @@ void test_sweep()
         int input;
         int output;
         int answer;
+        
         int i;
         struct path tmp;
         int setjmp_value;       // For TRY-CATCH macro
@@ -97,9 +98,12 @@ void test_sweep()
                 return;
         }
         
-        // void print_path(const struct path *self)
+        // print_path()
         init(&tmp, 3);
         
+        printf("~ ");
+        print_path(&tmp);
+        return;
         
         destruct(&tmp);
         
