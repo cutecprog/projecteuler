@@ -57,18 +57,17 @@ void test_sweep()
         
         // Test for init()
         input = 3;
-        init(&tmp, input);
+        TRY  {
+                init(&tmp, input);
+        } CATCH {
+                printf("! init(&tmp, %i) returned with tmp.data pointing to "
+                                                "NULL\n", input);
+                return;
+        }
+        
         for(i = 0; i < input; i++) {
                 answer = i;
-                
-                TRY (setjmp_value, {
-                        output = tmp.data[i];
-                }) CATCH ({
-                        printf("! init(&tmp, %i) returned with tmp.data[%i] as"
-                                                " ? but expected %i\n", input,
-                                                i, answer);
-                        return;
-                })
+                output = tmp.data[i];
                 
                 if(output != i) {
                         printf("! init(&tmp, %i) returned with tmp.data[%i] as"
@@ -99,7 +98,10 @@ void test_sweep()
         }
         
         // void print_path(const struct path *self)
+        init(&tmp, 3);
         
+        
+        destruct(&tmp);
         
         // Test for final_position()
         init(&tmp, 3);
@@ -110,6 +112,8 @@ void test_sweep()
                 tmp.data[i] = tmp.size / 2 + i;
         answer = true;
         METHOD_TEST(final_position, &tmp, output, answer);
+        
+        destruct(&tmp);
                         
         
         

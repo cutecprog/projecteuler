@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "test_macros.h"
 #include "e15_path.h"
 
 /*
@@ -8,8 +9,18 @@
  */
 void init(struct path *self, unsigned int size)
 {
-        /*self->size = size;
-        self->data = (unsigned int *) malloc(sizeof(unsigned int) * size);*/
+        self->data = NULL;
+        self->size = size;
+        self->data = malloc(sizeof(unsigned int) * size);
+        
+        if(self->data == NULL) {
+                THROW;
+                return;
+        }
+        
+        int i;
+        for(i = 0; i < self->size; i++)
+                self->data[i] = i;
 }
 
 /*
@@ -18,8 +29,9 @@ void init(struct path *self, unsigned int size)
  */
 void destruct(struct path *self)
 {
-        /*self->size = 0;
-        free(self->data);*/
+        free(self->data);
+        self->data = NULL;
+        self->size = 0;
 }
 
 /*
