@@ -49,7 +49,7 @@ void print_path(const struct path *self)
         }
         
         for(i = 0, j = 0; i < (self->size * 2); i++) {
-                if(self->data[j] == i) {
+                if(j < self->size && self->data[j] == i) {
                         printf("1");
                         j++;
                 } else {

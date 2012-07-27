@@ -28,7 +28,7 @@ main()
 int solution(const int GRID_SIDE_LENGTH)
 {
         struct path current_path;
-        init(&current_path, GRID_SIDE_LENGTH+1);
+        init(&current_path, GRID_SIDE_LENGTH);
         int i;
         print_path(&current_path);
         int path_count = 1;
