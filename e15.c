@@ -35,11 +35,11 @@ int solution(const int X)
  * Test (e15_path.c):
  *      init()
  *      destruct()
- *      move_index_up()
  *      valid()
  *      final_path()
- *      all_contiguous()
  *      index_contiguous_to_next()
+ *      all_contiguous()
+ *      move_index_up()
  *
  * Test (e15.c):
  *      solution()
@@ -153,10 +153,29 @@ void test_sweep()
         
         destruct(&tmp);
         
-        // bool index_contiguous_to_next(const struct path *self, unsigned int index);
+        // Test for index_contiguous_to_next()
         init(&tmp, 3);
         
+        tmp.data[0] = 0;
+        tmp.data[1] = 2;
+        tmp.data[2] = 4;
+        answer = false;
+        output = index_contiguous_to_next(&tmp, 1);
+        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
         
+        tmp.data[0] = 0;
+        tmp.data[1] = 1;
+        tmp.data[2] = 2;
+        answer = true;
+        output = index_contiguous_to_next(&tmp, 1);
+        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
+        
+        tmp.data[0] = 0;
+        tmp.data[1] = 4;
+        tmp.data[2] = 5;
+        answer = true;
+        output = index_contiguous_to_next(&tmp, 1);
+        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x41);
         
         destruct(&tmp);
         
@@ -168,35 +187,35 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x40);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x50);
         
         tmp.data[0] = 5;
         tmp.data[1] = 6;
         tmp.data[2] = 7;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x41);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x51);
         
         tmp.data[0] = 0;
         tmp.data[1] = 2;
         tmp.data[2] = 4;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x42);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x52);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = true;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x43);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x53);
         
         tmp.data[0] = 2;
         tmp.data[1] = 3;
         tmp.data[2] = 4;
         answer = true;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x44);
+        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x54);
         
         destruct(&tmp);
         

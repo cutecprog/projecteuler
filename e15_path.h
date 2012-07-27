@@ -17,8 +17,8 @@ void destruct(struct path *self);
 void print_path(const struct path *self);
 bool valid(const struct path *self);
 bool final_path(const struct path *self);
-bool all_contiguous(const struct path *self);
 bool index_contiguous_to_next(const struct path *self, unsigned int index);
+bool all_contiguous(const struct path *self);
 void move_index_up(struct path *self, unsigned int index);
 
 #endif

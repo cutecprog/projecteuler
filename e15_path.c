@@ -97,8 +97,19 @@ bool final_path(const struct path *self)
 }
 
 /*
- * Version: 12.07.26 (not complete)
- * Returns true if all data values are contiguous EG 2,3,4.
+ * Version: 12.07.27
+ * Returns to if index data value is contiguous with next index data value
+ * EG 2, 3
+ * Does not check if valid.
+ */
+bool index_contiguous_to_next(const struct path *self, unsigned int index)
+{
+        return (self->data[index] + 1 == self->data[index+1]);
+}
+
+/*
+ * Version: 12.07.27
+ * Returns true if all data values are contiguous EG 2, 3, 4.
  * If not valid then returns false (even if contiguous).
  */
 bool all_contiguous(const struct path *self)
@@ -112,14 +123,6 @@ bool all_contiguous(const struct path *self)
                                         current = self->data[i], i++)
                 if(current + 1 != self->data[i])
                         return false;
-        return true;
-}
-
-/*
- * Version: 12.07.26 (not complete)
- */
-bool index_contiguous_to_next(const struct path *self, unsigned int index)
-{
         return true;
 }
 
