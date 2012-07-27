@@ -8,6 +8,7 @@
  */
 
 #include <stdio.h>
+#include <time.h>
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
@@ -17,9 +18,25 @@ void test_sweep();
 main()
 {
         int i;
+        long int start = time(0);
+        long long sum;
         printf("Euler Problem 15\n");
         //test_sweep();
-        printf("Answer: %lli\n", solution(20));
+        printf("Answer: %lli\n", solution(15));
+        printf("Number of init() calls:                         %llu\n", init_count);
+        printf("Number of destruct() calls:                     %llu\n", destruct_count);
+        printf("Number of print_path() calls:                   %llu\n", print_path_count);
+        printf("Number of valid() calls:                        %llu\n", valid_count);
+        printf("Number of final_path() calls:                   %llu\n", final_path_count);
+        printf("Number of index_contiguous_to_next() calls:     %llu\n", index_contiguous_to_next_count);
+        printf("Number of all_contiguous() calls:               %llu\n", all_contiguous_count);
+        printf("Number of move_index_up() calls:                %llu\n", move_index_up_count);
+        printf("Number of reset_up_to_index() calls:            %llu\n", reset_up_to_index_count);
+        start = time(0) - start;
+        sum = init_count + destruct_count + print_path_count + valid_count + final_path_count + index_contiguous_to_next_count + all_contiguous_count + move_index_up_count + reset_up_to_index_count;
+        printf("Number of function calls:                       %llu\n", sum);
+        printf("Speed in seconds:                               %li\n", start);
+        printf("Average function cycles:                        %lli\n", (long long int)2200000000 * start / sum);
 }
 
 /*
@@ -32,22 +49,29 @@ long long int solution(const int GRID_SIDE_LENGTH)
         int i;
         long long int path_count = 1;
         
-        while(!final_path(&current_path)) {
-                if(all_contiguous(&current_path)) {
-                        printf("~ ");
-                        print_path(&current_path);
-                        move_index_up(&current_path, current_path.size-1);
-                        reset_up_to_index(&current_path, current_path.size-1);
-                        path_count++;
-                } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
-                        if(!index_contiguous_to_next(&current_path, i)) {
-                                move_index_up(&current_path, i);
-                                reset_up_to_index(&current_path, i);
+        TRY {
+                while(!final_path(&current_path)) {
+                        if(all_contiguous(&current_path)) {
+                                printf("~ ");
+                                print_path(&current_path);
+                                move_index_up(&current_path, current_path.size-1);
+                                reset_up_to_index(&current_path, current_path.size-1);
                                 path_count++;
-                                break;
+                        } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
+                                if(!index_contiguous_to_next(&current_path, i)) {
+                                        move_index_up(&current_path, i);
+                                        reset_up_to_index(&current_path, i);
+                                        path_count++;
+                                        break;
+                                }
                         }
                 }
+        } CATCH {
+                printf("Data was not valid\n");
         }
+        
+        destruct(&current_path);
+        
         return path_count;
 }
 

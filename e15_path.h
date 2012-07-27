@@ -22,5 +22,16 @@ bool all_contiguous(const struct path *self);
 void move_index_up(struct path *self, unsigned int index);
 void reset_up_to_index(struct path *self, unsigned int index);
 
+// These are for testing purposes only.
+unsigned long long int init_count;
+unsigned long long int destruct_count;
+unsigned long long int print_path_count;
+unsigned long long int valid_count;
+unsigned long long int final_path_count;
+unsigned long long int index_contiguous_to_next_count;
+unsigned long long int all_contiguous_count;
+unsigned long long int move_index_up_count;
+unsigned long long int reset_up_to_index_count;
+
 #endif
 
