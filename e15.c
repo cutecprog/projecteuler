@@ -11,7 +11,7 @@
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
-int solution(const int grid_side_length);
+int solution(const int GRID_SIDE_LENGTH);
 void test_sweep();
 
 main()
@@ -25,7 +25,7 @@ main()
 /*
  * Version: 12.07.26 (not complete)
  */
-int solution(const int X)
+int solution(const int GRID_SIDE_LENGTH)
 {
         return -1;
 }
@@ -81,11 +81,11 @@ void test_sweep()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        METHOD_TEST(destruct(&tmp), output, answer, return, 0x10);
+        TEST(destruct(&tmp), output, answer, return, 0x10);
                                                 
         answer = 0;
         output = tmp.size;
-        METHOD_TEST(destruct(&tmp), output, answer, return, 0x11);
+        TEST(destruct(&tmp), output, answer, return, 0x11);
         
         // bool valid(const struct path *self);
         init(&tmp, 3);
@@ -95,35 +95,35 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = 1;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x20);
+        TEST(valid(&tmp), output, answer, return, 0x20);
         
         tmp.data[0] = 3;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = 1;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x21);
+        TEST(valid(&tmp), output, answer, return, 0x21);
         
         tmp.data[0] = 3;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = 0;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x22);
+        TEST(valid(&tmp), output, answer, return, 0x22);
         
         tmp.data[0] = 1;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = 0;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x23);
+        TEST(valid(&tmp), output, answer, return, 0x23);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 6;
         answer = 0;
         output = valid(&tmp);
-        METHOD_TEST(valid(&tmp), output, answer, return, 0x24);
+        TEST(valid(&tmp), output, answer, return, 0x24);
         
         destruct(&tmp);
         
@@ -135,21 +135,21 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = false;
         output = final_path(&tmp);
-        METHOD_TEST(final_path(&tmp), output, answer, return, 0x30);
+        TEST(final_path(&tmp), output, answer, return, 0x30);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = false;
         output = final_path(&tmp);
-        METHOD_TEST(final_path(&tmp), output, answer, return, 0x31);
+        TEST(final_path(&tmp), output, answer, return, 0x31);
         
         tmp.data[0] = 3;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = true;
         output = final_path(&tmp);
-        METHOD_TEST(final_path(&tmp), output, answer, return, 0x32);
+        TEST(final_path(&tmp), output, answer, return, 0x32);
         
         destruct(&tmp);
         
@@ -161,21 +161,21 @@ void test_sweep()
         tmp.data[2] = 4;
         answer = false;
         output = index_contiguous_to_next(&tmp, 1);
-        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = true;
         output = index_contiguous_to_next(&tmp, 1);
-        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
         
         tmp.data[0] = 0;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = true;
         output = index_contiguous_to_next(&tmp, 1);
-        METHOD_TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x41);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x41);
         
         destruct(&tmp);
         
@@ -187,38 +187,54 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x50);
+        TEST(all_contiguous(&tmp), output, answer, return, 0x50);
         
         tmp.data[0] = 5;
         tmp.data[1] = 6;
         tmp.data[2] = 7;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x51);
+        TEST(all_contiguous(&tmp), output, answer, return, 0x51);
         
         tmp.data[0] = 0;
         tmp.data[1] = 2;
         tmp.data[2] = 4;
         answer = false;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x52);
+        TEST(all_contiguous(&tmp), output, answer, return, 0x52);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = true;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x53);
+        TEST(all_contiguous(&tmp), output, answer, return, 0x53);
         
         tmp.data[0] = 2;
         tmp.data[1] = 3;
         tmp.data[2] = 4;
         answer = true;
         output = all_contiguous(&tmp);
-        METHOD_TEST(all_contiguous(&tmp), output, answer, return, 0x54);
+        TEST(all_contiguous(&tmp), output, answer, return, 0x54);
         
         destruct(&tmp);
         
-        // void move_index_up(struct path *self, unsigned int index)
+        // Test for move_index_up()
+        init(&tmp, 3);
+        
+        input = 0;
+        tmp.data[input] = 2;
+        answer = 3;
+        move_index_up(&tmp, input);
+        output = tmp.data[input];
+        TEST(move_index_up(&tmp, i), output, answer, return, 0x60);
+        
+        destruct(&tmp);
+        
+        /*// Test for solution()
+        input = 2;
+        answer = 6;
+        output = solution(input);
+        TEST(*/
 }
 
