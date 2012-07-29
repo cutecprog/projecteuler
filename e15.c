@@ -47,8 +47,8 @@ long long int solution(const int GRID_SIDE_LENGTH)
                         }
                 }
                 if(i >= GRID_SIDE_LENGTH) {
-                        //printf("~ No paths changed and not at final path.\n~ ");
-                        //print_path(&current_path);
+                        printf("~ No paths changed and not at final path.\n~ ");
+                        print_path(&current_path);
                         return path_count;
                 }
         }
