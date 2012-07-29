@@ -14,13 +14,13 @@ void init(struct path *self, unsigned int size)
         self->size = size;
         self->data = malloc(sizeof(unsigned int) * size);
         
-        if(self->data == NULL) {
+        if (self->data == NULL) {
                 THROW;
                 return;
         }
         
         int i;
-        for(i = 0; i < self->size; i++)
+        for (i = 0; i < self->size; i++)
                 self->data[i] = i;
 }
 
@@ -41,14 +41,14 @@ void destruct(struct path *self)
  */
 void print_path(const struct path *self)
 {  
-        if(!valid(self))
+        if (!valid(self))
                 THROW;
         
         int i;
         int j;
         
-        for(i = 0, j = 0; i < (self->size * 2); i++) {
-                if(j < self->size && self->data[j] == i) {
+        for (i = 0, j = 0; i < (self->size * 2); i++) {
+                if (j < self->size && self->data[j] == i) {
                         printf("1");
                         j++;
                 } else {
@@ -69,12 +69,12 @@ void print_path(const struct path *self)
 bool valid(const struct path *self)
 {
         int i;
-        for(i = 0; i < self->size-1; i++)
-                if(self->data[i] >= self->data[i+1])
+        for (i = 0; i < self->size-1; i++)
+                if (self->data[i] >= self->data[i+1])
                         return false;
         
-        for(i = 0; i < self->size; i++)
-                if(self->data[i] < 0 || self->data[i] >= (self->size * 2))
+        for (i = 0; i < self->size; i++)
+                if (self->data[i] < 0 || self->data[i] >= (self->size * 2))
                         return false;
         return true;
 }
@@ -86,13 +86,13 @@ bool valid(const struct path *self)
 bool final_path(const struct path *self)
 {
 #ifdef DEBUG   
-        if(!valid(self))
+        if (!valid(self))
                 THROW;
 #endif
                 
         int i;
-        for(i = 0; i < self->size; i++)
-                if(self->data[i] != self->size + i) 
+        for (i = 0; i < self->size; i++)
+                if (self->data[i] != self->size + i) 
                         return false;
         return true;
 }
@@ -116,12 +116,12 @@ bool index_contiguous_to_next(const struct path *self, unsigned int index)
 bool all_contiguous(const struct path *self)
 {     
 #ifdef DEBUG   
-        if(!valid(self))
+        if (!valid(self))
                 THROW;
 #endif
         
         int i;
-        for(i = 0; i < self->size-1; i++)
+        for (i = 0; i < self->size-1; i++)
                 if(!index_contiguous_to_next(self, i))
                         return false;
         return true;
@@ -139,7 +139,7 @@ void move_index_up(struct path *self, unsigned int index)
 void reset_up_to_index(struct path *self, unsigned int index)
 {
         int i;
-        for(i = 0; i < index; i++)
+        for (i = 0; i < index; i++)
                 self->data[i] = i;
 }
 
