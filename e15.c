@@ -18,7 +18,7 @@ void test_sweep();
 main()
 {
         printf("Euler Problem 15\n");
-        test_sweep();
+        //test_sweep();
         printf("Answer: %lli\n", solution(10));
 }
 
@@ -38,19 +38,19 @@ long long int solution(const int GRID_SIDE_LENGTH)
                                 move_index_up(&current_path, i);
                                 reset_up_to_index(&current_path, i);
                                 path_count++;
-                                TRY {
+                                /*TRY {
                                         print_path(&current_path);
                                 } CATCH {
                                         printf("~ Invalid Data\n");
-                                }
+                                }*/
                                 break;
                         }
                 }
-                if(i >= GRID_SIDE_LENGTH) {
+                /*if(i >= GRID_SIDE_LENGTH) {
                         printf("~ No paths changed and not at final path.\n~ ");
                         print_path(&current_path);
-                        return path_count;
-                }
+                        //return path_count;
+                }*/
         }
         /*print path_count
         

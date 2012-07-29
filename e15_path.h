@@ -1,7 +1,7 @@
 #ifndef E15_PATH_H
 #define E15_PATH_H
 
-#define DEBUG
+//#define DEBUG
 
 #include <stdbool.h>
 
