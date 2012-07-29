@@ -19,31 +19,7 @@ main()
 {
         printf("Euler Problem 15\n");
         test_sweep();
-        
-#ifdef DEBUG
-        long int start = time(0);
-        long long sum;
-#endif
-        
-        printf("Answer: %lli\n", solution(20));
-
-#ifdef DEBUG
-        printf("Number of init() calls:                         %llu\n", init_count);
-        printf("Number of destruct() calls:                     %llu\n", destruct_count);
-        printf("Number of print_path() calls:                   %llu\n", print_path_count);
-        printf("Number of valid() calls:                        %llu\n", valid_count);
-        printf("Number of final_path() calls:                   %llu\n", final_path_count);
-        printf("Number of index_contiguous_to_next() calls:     %llu\n", index_contiguous_to_next_count);
-        printf("Number of all_contiguous() calls:               %llu\n", all_contiguous_count);
-        printf("Number of move_index_up() calls:                %llu\n", move_index_up_count);
-        printf("Number of reset_up_to_index() calls:            %llu\n", reset_up_to_index_count);
-        sum = init_count + destruct_count + print_path_count + valid_count + final_path_count + index_contiguous_to_next_count + all_contiguous_count + move_index_up_count + reset_up_to_index_count;
-        printf("Number of function calls:                       %llu\n", sum);
-        printf("Speed in seconds:                               %li\n", start);
-        start = time(0) - start;
-        printf("Average function cycles:                        %lli\n", (long long int)2200000000 * start / sum);
-#endif
-
+        printf("Answer: %lli\n", solution(10));
 }
 
 /*
@@ -180,13 +156,18 @@ void test_sweep()
         
         // Test for final_path()
         init(&tmp, 3);
-        
-        /*tmp.data[0] = 6;
-        tmp.data[1] = 1;
-        tmp.data[2] = 2;
-        answer = false;
-        output = final_path(&tmp);
-        TEST(final_path(&tmp), output, answer, return, 0x30);*/
+
+#ifdef DEBUG
+        TRY {
+                tmp.data[0] = 6;
+                tmp.data[1] = 1;
+                tmp.data[2] = 2;
+                output = final_path(&tmp);
+                printf("! Given invalid data final_path(&tmp) failed to throw"
+                                                " (error code: 0x50)\n");
+                return;
+        }
+#endif
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
@@ -232,21 +213,29 @@ void test_sweep()
         
         // Test for all_contiguous()
         init(&tmp, 3);
-        
-        /*tmp.data[0] = 6;
-        tmp.data[1] = 1;
-        tmp.data[2] = 2;
-        answer = false;
-        output = all_contiguous(&tmp);
-        TEST(all_contiguous(&tmp), output, answer, return, 0x50);*/
-        
-        tmp.data[0] = 5;
-        tmp.data[1] = 6;
-        tmp.data[2] = 7;
-        answer = false;
-        output = all_contiguous(&tmp);
-        TEST(all_contiguous(&tmp), output, answer, return, 0x51);
-        
+
+#ifdef DEBUG
+        TRY {
+                tmp.data[0] = 6;
+                tmp.data[1] = 1;
+                tmp.data[2] = 2;
+                output = all_contiguous(&tmp);
+                printf("! Given invalid data all_contiguous(&tmp) failed to"
+                                                " throw (error code: 0x50)\n");
+                return;
+        }
+
+        TRY {
+                tmp.data[0] = 5;
+                tmp.data[1] = 6;
+                tmp.data[2] = 7;
+                output = all_contiguous(&tmp);
+                printf("! Given invalid data all_contiguous(&tmp) failed to"
+                                                " throw (error code: 0x51)\n");
+                return;
+        }
+#endif
+
         tmp.data[0] = 0;
         tmp.data[1] = 2;
         tmp.data[2] = 4;

@@ -10,10 +10,6 @@
  */
 void init(struct path *self, unsigned int size)
 {
-#ifdef DEBUG
-        init_count++;
-#endif
-        
         self->data = NULL;
         self->size = size;
         self->data = malloc(sizeof(unsigned int) * size);
@@ -33,11 +29,7 @@ void init(struct path *self, unsigned int size)
  * Frees data from heap.
  */
 void destruct(struct path *self)
-{
-#ifdef DEBUG
-        destruct_count++;
-#endif
-        
+{        
         free(self->data);
         self->data = NULL;
         self->size = 0;
@@ -48,11 +40,7 @@ void destruct(struct path *self)
  * Prints out path as a bit stream using printf().
  */
 void print_path(const struct path *self)
-{
-#ifdef DEBUG
-        print_path_count++;
-#endif
-        
+{  
         if(!valid(self))
                 THROW;
         
@@ -80,10 +68,6 @@ void print_path(const struct path *self)
  */
 bool valid(const struct path *self)
 {
-#ifdef DEBUG
-        valid_count++;
-#endif
-        
         int i;
         for(i = 0; i < self->size-1; i++)
                 if(self->data[i] >= self->data[i+1])
@@ -101,13 +85,10 @@ bool valid(const struct path *self)
  */
 bool final_path(const struct path *self)
 {
-#ifdef DEBUG
-        final_path_count++;
-#endif
-        
-        /*if(!valid(self)) {
+#ifdef DEBUG   
+        if(!valid(self))
                 THROW;
-        }*/
+#endif
                 
         int i;
         for(i = 0; i < self->size; i++)
@@ -124,10 +105,6 @@ bool final_path(const struct path *self)
  */
 bool index_contiguous_to_next(const struct path *self, unsigned int index)
 {
-#ifdef DEBUG
-        index_contiguous_to_next_count++;
-#endif
-        
         return (self->data[index] + 1 == self->data[index+1]);
 }
 
@@ -137,14 +114,12 @@ bool index_contiguous_to_next(const struct path *self, unsigned int index)
  * If not valid then returns false (even if contiguous).
  */
 bool all_contiguous(const struct path *self)
-{
-#ifdef DEBUG
-        all_contiguous_count++;
+{     
+#ifdef DEBUG   
+        if(!valid(self))
+                THROW;
 #endif
         
-        /*if(!valid(self))
-                THROW;*/
-            
         int i;
         for(i = 0; i < self->size-1; i++)
                 if(!index_contiguous_to_next(self, i))
@@ -158,19 +133,11 @@ bool all_contiguous(const struct path *self)
  */
 void move_index_up(struct path *self, unsigned int index)
 {
-#ifdef DEBUG
-        move_index_up_count++;
-#endif
-
         self->data[index]++;
 }
 
 void reset_up_to_index(struct path *self, unsigned int index)
 {
-#ifdef DEBUG
-        reset_up_to_index_count++;
-#endif
-        
         int i;
         for(i = 0; i < index; i++)
                 self->data[i] = i;
