@@ -17,9 +17,12 @@ void test_sweep();
 
 main()
 {
+        int start_time;
         printf("Euler Problem 15\n");
         //test_sweep();
-        printf("Answer: %lli\n", solution(10));
+        start_time = time(0);
+        printf("Answer: %lli\n", solution(20));
+        printf("Time: %li\n", (time(0) - start_time));
 }
 
 /*
@@ -38,40 +41,11 @@ long long int solution(const int GRID_SIDE_LENGTH)
                                 move_index_up(&current_path, i);
                                 reset_up_to_index(&current_path, i);
                                 path_count++;
-                                /*TRY {
-                                        print_path(&current_path);
-                                } CATCH {
-                                        printf("~ Invalid Data\n");
-                                }*/
                                 break;
                         }
                 }
-                /*if(i >= GRID_SIDE_LENGTH) {
-                        printf("~ No paths changed and not at final path.\n~ ");
-                        print_path(&current_path);
-                        //return path_count;
-                }*/
         }
-        /*print path_count
         
-        while(!final_path(&current_path)) {
-        if(all_contiguous(&current_path)) {
-                                move_index_up(&current_path, current_path.size-1);
-                                reset_up_to_index(&current_path, current_path.size-1);
-                                path_count++;
-                        } else for(i = 0; i < GRID_SIDE_LENGTH-1; i++) {
-                                if(!index_contiguous_to_next(&current_path, i)) {
-                                        move_index_up(&current_path, i);
-                                        reset_up_to_index(&current_path, i);
-                                        path_count++;
-                                        break;
-                                }
-                        }
-                }
-        } CATCH {
-                printf("Data was not valid\n");
-        }
-        */
         destruct(&current_path);
         
         return path_count;
