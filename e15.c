@@ -8,21 +8,42 @@
  */
 
 #include <stdio.h>
-#include <time.h>
+#include <stdlib.h>
+#include <sys/time.h>
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
 long long int solution(const int GRID_SIDE_LENGTH);
 void test_sweep();
 
-main()
+main(int argc, char *argv[])
 {
-        int start_time;
-        printf("Euler Problem 15\n");
-        //test_sweep();
-        start_time = time(0);
-        printf("Answer: %lli\n", solution(20));
-        printf("Time: %li\n", (time(0) - start_time));
+        struct timeval tim;
+        double start_time;
+        double finish_time;
+        int input;
+        
+        if(argc > 2)
+                printf("Warning too many command line arguments.");
+                
+        if(argc == 1)
+                input = 14;
+        else
+                input = atoi(argv[1]);
+
+        printf("Euler Problem 15\n"); 
+        printf("Running...\n");      
+        printf("solution(%i) = ", input);
+        
+        gettimeofday(&tim, NULL);
+        start_time = tim.tv_sec + (tim.tv_usec / 1000000.0);
+        
+        printf("%lli and ran for ", solution(input));
+        
+        gettimeofday(&tim, NULL);
+        finish_time = tim.tv_sec + (tim.tv_usec / 1000000.0);
+        
+        printf("%.6lf seconds\n", (finish_time - start_time));
 }
 
 /*
