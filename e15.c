@@ -32,14 +32,8 @@ main(int argc, char *argv[])
                 input = 14;
         else
                 input = atoi(argv[1]);
-
-        struct path tmp;
-        init(&tmp, 3);
-        destruct(&tmp);
-        printf("%lli\n", solution(2));
-        //destruct(&tmp);
         
-        test_sweep('v');
+        test_sweep('n');
 
         printf("Running...\n");      
         printf("solution(%i) = ", input);
@@ -74,9 +68,8 @@ long long int solution(const int GRID_SIDE_LENGTH)
                                 break;
                         }
                 }
-                // None of the if-statements executed.
+                // None of the if-statements executed (else statement)
                 if (i == GRID_SIDE_LENGTH) {
-                        print_path(&current_path);
                         path_count = -1;
                         goto exit; // Linus said I could
                 }
@@ -109,9 +102,7 @@ exit:
  */
 void test_sweep(char mode)
 {
-        
-
-        /*int input;
+        int input;
         int output;
         int answer;
         
@@ -361,6 +352,6 @@ void test_sweep(char mode)
         answer = 20;
         output = (int)solution(input);
         TEST(solution(input), output, answer, mode == 'v', return, 0x1001);
-*/
+
 }
 

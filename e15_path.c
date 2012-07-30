@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <malloc.h>
 #include "test_macros.h"
 #include "e15_path.h"
 
@@ -12,12 +13,10 @@ void init(struct path *self, unsigned int size)
 {
         self->data = NULL;
         self->size = size;
-        self->data = malloc(sizeof(unsigned int) * size);
+        self->data = malloc((size_t)(sizeof(unsigned int) * size));
         
-        if (self->data == NULL) {
-//                THROW;
-                return;
-        }
+        if (self->data == NULL)
+                THROW;
         
         int i;
         for (i = 0; i < self->size; i++)
@@ -42,8 +41,7 @@ void destruct(struct path *self)
 void print_path(const struct path *self)
 {  
         if (!valid(self))
-                return;
-//                THROW;
+                THROW;
         
         int i;
         int j;
@@ -103,9 +101,12 @@ bool final_path(const struct path *self)
  * Returns to if index data value is contiguous with next index data value
  * EG 2, 3
  * Does not check if valid.
+ * Also says the final index is not contiguous to next.
  */
 bool index_contiguous_to_next(const struct path *self, unsigned int index)
 {
+        if (index == (self->size - 1))
+                return false;
         return (self->data[index] + 1 == self->data[index+1]);
 }
 
