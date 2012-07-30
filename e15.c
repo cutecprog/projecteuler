@@ -14,11 +14,11 @@
 #include "e15_path.h"
                                                                                 
 long long int solution(const int GRID_SIDE_LENGTH);
+double get_time();
 void test_sweep(char mode);
 
 main(int argc, char *argv[])
 {
-        struct timeval tim;
         double start_time;
         double finish_time;
         int input;
@@ -38,19 +38,25 @@ main(int argc, char *argv[])
         printf("Running...\n");      
         printf("solution(%i) = ", input);
         
-        gettimeofday(&tim, NULL);
-        start_time = tim.tv_sec + (tim.tv_usec / 1000000.0);
-        
+        start_time = get_time();
         printf("%lli and ran for ", solution(input));
-        
-        gettimeofday(&tim, NULL);
-        finish_time = tim.tv_sec + (tim.tv_usec / 1000000.0);
+        finish_time = get_time();
         
         printf("%.6lf seconds\n", (finish_time - start_time));
 }
 
 /*
- * Version: 12.07.27 (Generic Brute Readable)
+ * Version: 12.07.30
+ */
+double get_time()
+{
+        struct timeval tim;
+        gettimeofday(&tim, NULL);
+        return tim.tv_sec + (tim.tv_usec / 1000000.0);
+}
+
+/*
+ * Version: 12.07.30 (Generic Brute Readable)
  */
 long long int solution(const int GRID_SIDE_LENGTH)
 {
@@ -68,11 +74,13 @@ long long int solution(const int GRID_SIDE_LENGTH)
                                 break;
                         }
                 }
+#ifdef DEBUG
                 // None of the if-statements executed (else statement)
                 if (i == GRID_SIDE_LENGTH) {
                         path_count = -1;
                         goto exit; // Linus said I could
                 }
+#endif
         }
 
 exit:
@@ -81,7 +89,7 @@ exit:
 }
 
 /*
- * Version: 12.07.26 (not complete)
+ * Version: 12.07.30
  * Test (e15_path.c):
  *      init()
  *      destruct()

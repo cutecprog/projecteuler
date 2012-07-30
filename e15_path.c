@@ -97,7 +97,7 @@ bool final_path(const struct path *self)
 }
 
 /*
- * Version: 12.07.27
+ * Version: 12.07.30
  * Returns to if index data value is contiguous with next index data value
  * EG 2, 3
  * Does not check if valid.
