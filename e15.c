@@ -33,7 +33,13 @@ main(int argc, char *argv[])
         else
                 input = atoi(argv[1]);
 
-        test_sweep(0);
+        struct path tmp;
+        init(&tmp, 3);
+        destruct(&tmp);
+        printf("%lli\n", solution(2));
+        //destruct(&tmp);
+        
+        test_sweep('v');
 
         printf("Running...\n");      
         printf("solution(%i) = ", input);
@@ -68,10 +74,16 @@ long long int solution(const int GRID_SIDE_LENGTH)
                                 break;
                         }
                 }
+                // None of the if-statements executed.
+                if (i == GRID_SIDE_LENGTH) {
+                        print_path(&current_path);
+                        path_count = -1;
+                        goto exit; // Linus said I could
+                }
         }
 
+exit:
         destruct(&current_path);
-
         return path_count;
 }
 
@@ -97,7 +109,9 @@ long long int solution(const int GRID_SIDE_LENGTH)
  */
 void test_sweep(char mode)
 {
-        int input;
+        
+
+        /*int input;
         int output;
         int answer;
         
@@ -116,7 +130,7 @@ void test_sweep(char mode)
         }
         if (mode == 'v')
                 printf("~ Passed test 0x0\n");
-        
+
         for (i = 0; i < input; i++) {
                 answer = i;
                 output = tmp.data[i];
@@ -137,7 +151,7 @@ void test_sweep(char mode)
         destruct(&tmp);
         output = (int)tmp.data;
         TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x10);
-                                                
+                                        
         answer = 0;
         output = tmp.size;
         TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x11);
@@ -336,13 +350,11 @@ void test_sweep(char mode)
         TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', return, 0x71);
         
         destruct(&tmp);
-/*        
+
         // Test for solution()
         input = 2;
         answer = 6;
-        long long int tmp_lli;
-        tmp_lli = solution(input);
-
+        output = (int)solution(input);
         TEST(solution(input), output, answer, mode == 'v', return, 0x1000);
         
         input = 3;

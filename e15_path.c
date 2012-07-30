@@ -15,7 +15,7 @@ void init(struct path *self, unsigned int size)
         self->data = malloc(sizeof(unsigned int) * size);
         
         if (self->data == NULL) {
-                THROW;
+//                THROW;
                 return;
         }
         
@@ -42,7 +42,8 @@ void destruct(struct path *self)
 void print_path(const struct path *self)
 {  
         if (!valid(self))
-                THROW;
+                return;
+//                THROW;
         
         int i;
         int j;

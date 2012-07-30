@@ -2,8 +2,8 @@
 #define TEST_MACROS_H
 
 // for TRY, CATCH, THROW macros
-#include <setjmp.h>
-jmp_buf __ex_buf__; 
+//#include <setjmp.h>
+//jmp_buf __ex_buf__; 
 
 #define TEST(function_call, o, a, verbose, exit_action, code)                   \
                 if (o != a) {                                                   \
