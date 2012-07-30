@@ -14,7 +14,7 @@
 #include "e15_path.h"
                                                                                 
 long long int solution(const int GRID_SIDE_LENGTH);
-void test_sweep();
+void test_sweep(char mode);
 
 main(int argc, char *argv[])
 {
@@ -23,15 +23,18 @@ main(int argc, char *argv[])
         double finish_time;
         int input;
         
+        printf("Euler Problem 15\n"); 
+        
         if(argc > 2)
-                printf("Warning too many command line arguments.");
-                
+                printf("! Warning too many command line arguments.\n");
+       
         if(argc == 1)
                 input = 14;
         else
                 input = atoi(argv[1]);
 
-        printf("Euler Problem 15\n"); 
+        test_sweep(0);
+
         printf("Running...\n");      
         printf("solution(%i) = ", input);
         
@@ -55,7 +58,7 @@ long long int solution(const int GRID_SIDE_LENGTH)
         init(&current_path, GRID_SIDE_LENGTH);
         int i;
         long long int path_count = 1;
-        
+
         while (!final_path(&current_path)) {
                 for (i = 0; i < GRID_SIDE_LENGTH; i++) {
                         if (!index_contiguous_to_next(&current_path, i)) {
@@ -66,9 +69,9 @@ long long int solution(const int GRID_SIDE_LENGTH)
                         }
                 }
         }
-        
+
         destruct(&current_path);
-        
+
         return path_count;
 }
 
@@ -86,8 +89,13 @@ long long int solution(const int GRID_SIDE_LENGTH)
  *
  * Test (e15.c):
  *      solution()
+ *
+ * Modes:
+ *      \0 -  normal
+ *      v  -  verbose
+ *      
  */
-void test_sweep()
+void test_sweep(char mode)
 {
         int input;
         int output;
@@ -106,6 +114,8 @@ void test_sweep()
                                                 );
                 return;
         }
+        if (mode == 'v')
+                printf("~ Passed test 0x0\n");
         
         for (i = 0; i < input; i++) {
                 answer = i;
@@ -119,18 +129,20 @@ void test_sweep()
                         return;
                 }
         }
-        
+        if (mode == 'v')
+                printf("~ Passed test 0x1\n");
+
         // Test for destruct()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        TEST(destruct(&tmp), output, answer, return, 0x10);
+        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x10);
                                                 
         answer = 0;
         output = tmp.size;
-        TEST(destruct(&tmp), output, answer, return, 0x11);
-        
-        // bool valid(const struct path *self);
+        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x11);
+
+        // Test for valid()
         init(&tmp, 3);
         
         tmp.data[0] = 0;
@@ -138,35 +150,35 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = 1;
         output = valid(&tmp);
-        TEST(valid(&tmp), output, answer, return, 0x20);
+        TEST(valid(&tmp), output, answer, mode == 'v', return, 0x20);
         
         tmp.data[0] = 3;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = 1;
         output = valid(&tmp);
-        TEST(valid(&tmp), output, answer, return, 0x21);
+        TEST(valid(&tmp), output, answer, mode == 'v', return, 0x21);
         
         tmp.data[0] = 3;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = 0;
         output = valid(&tmp);
-        TEST(valid(&tmp), output, answer, return, 0x22);
+        TEST(valid(&tmp), output, answer, mode == 'v', return, 0x22);
         
         tmp.data[0] = 1;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = 0;
         output = valid(&tmp);
-        TEST(valid(&tmp), output, answer, return, 0x23);
+        TEST(valid(&tmp), output, answer, mode == 'v', return, 0x23);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 6;
         answer = 0;
         output = valid(&tmp);
-        TEST(valid(&tmp), output, answer, return, 0x24);
+        TEST(valid(&tmp), output, answer, mode == 'v', return, 0x24);
         
         destruct(&tmp);
         
@@ -180,9 +192,11 @@ void test_sweep()
                 tmp.data[2] = 2;
                 output = final_path(&tmp);
                 printf("! Given invalid data final_path(&tmp) failed to throw"
-                                                " (error code: 0x50)\n");
+                                                " (error code: 0x30)\n");
                 return;
         }
+        if (mode == 'v')
+                printf("~ Passed test 0x30\n");
 #endif
         
         tmp.data[0] = 0;
@@ -190,14 +204,14 @@ void test_sweep()
         tmp.data[2] = 2;
         answer = false;
         output = final_path(&tmp);
-        TEST(final_path(&tmp), output, answer, return, 0x31);
+        TEST(final_path(&tmp), output, answer, mode == 'v', return, 0x31);
         
         tmp.data[0] = 3;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = true;
         output = final_path(&tmp);
-        TEST(final_path(&tmp), output, answer, return, 0x32);
+        TEST(final_path(&tmp), output, answer, mode == 'v', return, 0x32);
         
         destruct(&tmp);
         
@@ -209,21 +223,21 @@ void test_sweep()
         tmp.data[2] = 4;
         answer = false;
         output = index_contiguous_to_next(&tmp, 1);
-        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, mode == 'v', return, 0x40);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = true;
         output = index_contiguous_to_next(&tmp, 1);
-        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x40);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, mode == 'v', return, 0x41);
         
         tmp.data[0] = 0;
         tmp.data[1] = 4;
         tmp.data[2] = 5;
         answer = true;
         output = index_contiguous_to_next(&tmp, 1);
-        TEST(index_contiguous_to_next(&tmp, 1), output, answer, return, 0x41);
+        TEST(index_contiguous_to_next(&tmp, 1), output, answer, mode == 'v', return, 0x42);
         
         destruct(&tmp);
         
@@ -240,7 +254,9 @@ void test_sweep()
                                                 " throw (error code: 0x50)\n");
                 return;
         }
-
+        if (mode == 'v')
+                printf("~ Passed test 0x50\n");
+        
         TRY {
                 tmp.data[0] = 5;
                 tmp.data[1] = 6;
@@ -250,6 +266,8 @@ void test_sweep()
                                                 " throw (error code: 0x51)\n");
                 return;
         }
+        if (mode == 'v')
+                printf("~ Passed test 0x51\n");
 #endif
 
         tmp.data[0] = 0;
@@ -257,21 +275,21 @@ void test_sweep()
         tmp.data[2] = 4;
         answer = false;
         output = all_contiguous(&tmp);
-        TEST(all_contiguous(&tmp), output, answer, return, 0x52);
+        TEST(all_contiguous(&tmp), output, answer, mode == 'v', return, 0x52);
         
         tmp.data[0] = 0;
         tmp.data[1] = 1;
         tmp.data[2] = 2;
         answer = true;
         output = all_contiguous(&tmp);
-        TEST(all_contiguous(&tmp), output, answer, return, 0x53);
+        TEST(all_contiguous(&tmp), output, answer, mode == 'v', return, 0x53);
         
         tmp.data[0] = 2;
         tmp.data[1] = 3;
         tmp.data[2] = 4;
         answer = true;
         output = all_contiguous(&tmp);
-        TEST(all_contiguous(&tmp), output, answer, return, 0x54);
+        TEST(all_contiguous(&tmp), output, answer, mode == 'v', return, 0x54);
         
         destruct(&tmp);
         
@@ -283,7 +301,7 @@ void test_sweep()
         answer = 3;
         move_index_up(&tmp, input);
         output = tmp.data[input];
-        TEST(move_index_up(&tmp, input), output, answer, return, 0x60);
+        TEST(move_index_up(&tmp, input), output, answer, mode == 'v', return, 0x60);
         
         destruct(&tmp);
         
@@ -297,10 +315,10 @@ void test_sweep()
         reset_up_to_index(&tmp, input);
         answer = 0;
         output = tmp.data[0];
-        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x70);
+        TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', , 0x70);
         answer = 1;
         output = tmp.data[1];
-        TEST(reset_up_to_index(&tmp, input), output, answer, return, 0x70);
+        TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', return, 0x70);
         
         tmp.data[0] = 3;
         tmp.data[1] = 4;
@@ -309,25 +327,28 @@ void test_sweep()
         reset_up_to_index(&tmp, input);
         answer = 0;
         output = tmp.data[0];
-        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x71);
+        TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', , 0x71);
         answer = 1;
         output = tmp.data[1];
-        TEST(reset_up_to_index(&tmp, input), output, answer, , 0x71);
+        TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', , 0x71);
         answer = 2;
         output = tmp.data[2];
-        TEST(reset_up_to_index(&tmp, input), output, answer, return, 0x71);
+        TEST(reset_up_to_index(&tmp, input), output, answer, mode == 'v', return, 0x71);
         
         destruct(&tmp);
-        
+/*        
         // Test for solution()
         input = 2;
         answer = 6;
-        output = solution(input);
-        TEST(solution(input), output, answer, return, 0x1000);
+        long long int tmp_lli;
+        tmp_lli = solution(input);
+
+        TEST(solution(input), output, answer, mode == 'v', return, 0x1000);
         
         input = 3;
         answer = 20;
-        output = solution(input);
-        TEST(solution(input), output, answer, return, 0x1001);
+        output = (int)solution(input);
+        TEST(solution(input), output, answer, mode == 'v', return, 0x1001);
+*/
 }
 
