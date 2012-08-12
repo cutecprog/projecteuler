@@ -13,7 +13,7 @@ def int_to_word(number):
         digits = []
         i = 0
         while number != 0:
-                digits[i] = number % 10
+                digits.insert(0, number % 10)
                 number = number / 10
                 i = i + 1
         print digits
