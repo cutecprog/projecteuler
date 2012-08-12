@@ -32,6 +32,8 @@ length += len("seventeen")
 length += len("eighteen")
 length += len("nineteen")
 
+length *= 10     # length += len(1-99) * 10
+
 length += len("twenty")  * 10
 length += len("thirty")  * 10
 length += len("fourty")  * 10
