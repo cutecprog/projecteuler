@@ -34,7 +34,7 @@ length += len("nineteen")
 
 length += len("twenty")  * 10
 length += len("thirty")  * 10
-length += len("fourty")  * 10
+length += len("forty")  * 10
 length += len("fifty")   * 10
 length += len("sixty")   * 10
 length += len("seventy") * 10
