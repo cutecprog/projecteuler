@@ -25,15 +25,17 @@ main(int argc, char *argv[])
         
         printf("Euler Problem 15\n"); 
         
-        if(argc > 2)
-                printf("! Warning too many command line arguments.\n");
-       
-        if(argc == 1)
-                input = 14;
-        else
+        switch(argc) {
+        case 1:
+                input = 14; // Default value
+                break;
+        default:
+                printf("WARNING: too many command line arguments\n");
+        case 2:
                 input = atoi(argv[1]);
+        }
         
-        test_sweep('n');
+        test_sweep(0);
 
         printf("Running...\n");      
         printf("solution(%i) = ", input);
