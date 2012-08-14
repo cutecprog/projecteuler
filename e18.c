@@ -19,38 +19,21 @@
 #include "test_macros.h"
 #include "e15_path.h"
                                                                                 
-long long int solution(const int GRID_SIDE_LENGTH);
+long long int solution(const struct node triangle);
 void test_sweep(char mode);
 
-main(int argc, char *argv[])
+main()
 {
         int input;
         
         printf("Euler Problem 18\n"); 
         
-        
-        
         test_sweep(0);
 
         printf("Running...\n");      
-        printf("solution(%i) = ", input);
-        
-        start_time = get_time();
-        printf("%lli and ran for ", solution(input));
-        finish_time = get_time();
-        
-        printf("%.6lf seconds\n", (finish_time - start_time));
+        printf("solution() = %i\n", solution(input));
 }
 
-/*
- * Version: 12.07.30
- */
-double get_time()
-{
-        struct timeval tim;
-        gettimeofday(&tim, NULL);
-        return tim.tv_sec + (tim.tv_usec / 1000000.0);
-}
 
 /*
  * Version: 12.08.12
@@ -80,16 +63,33 @@ void test_sweep(char mode)
         int input;
         int output;
         int answer;
+        struct node tmp;
         
 
         // Test for init()
-
+        answer = 16;
+        init(&tmp, 16);
+        output = (int)tmp.data;
+        TEST(init(&tmp, 16), output, answer, mode == 'v', return, 0x0);
+        
+        answer = 0;
+        output = (int)tmp.right;
+        TEST(init(&tmp, 16), output, answer, mode == 'v', return, 0x1);
+        
+        output = (int)tmp.left;
+        TEST(init(&tmp, 16), output, answer, mode == 'v', return, 0x2);
 
         // Test for destruct()
         answer = 0;
         destruct(&tmp);
         output = (int)tmp.data;
-        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x10);
+        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x1);
+        
+        output = (int)tmp.right;
+        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x1);
+        
+        output = (int)tmp.left;
+        TEST(destruct(&tmp), output, answer, mode == 'v', return, 0x1);
 
 }
 
