@@ -12,10 +12,11 @@ struct node {
         struct node *right;
 };
 
-void init(struct node *self, unsigned int data);
-void destruct(struct node *self);
-void create_triangle(struct node *self, char *data)
-int sum_of_triangle(struct node *self);
+void init(struct node **self, unsigned int data);
+void destruct(struct node **self);
+void print_node(struct node **self);
+void create_triangle(struct node **self, struct node **data, unsigned int size);
+int sum_of_triangle(struct node **self);
 
 #endif
 
