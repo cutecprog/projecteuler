@@ -1,5 +1,5 @@
 def main():
-        gsum([[1],[2,3],[4,5,6]])
+        print gsum([[1],[2,3],[4,5,6]])
 
 def gsum(data):
         """Computes the greatest possible sum of one traversal of a triangle.
@@ -9,8 +9,8 @@ def gsum(data):
         col_num = len(data)
         sum_right = 0
         sum_left = 0
-        for i in (1, col_num):
-                for j in (i, col_num):
+        for i in range(1, col_num):
+                for j in range(i, col_num):
                         sum_left += data[j][0]
                         sum_right += data[j][j]
                 if sum_left > sum_right:
