@@ -1,7 +1,7 @@
-test1 = """1
-2 3
-4 5 6
-7 8 9 10"""
+test1 = """3
+7 4
+2 4 6
+8 5 9 3"""
 
 def main():
         print gsum(atot(test1))
@@ -28,18 +28,25 @@ def gsum(data):
         """Computes the greatest possible sum of one traversal of a triangle.
 
         """
-        S = 0
+        S = data[0][0]
         col_num = len(data)
-        sum_right = 0
-        sum_left = 0
+        l = 0 # Number of left turns        
+        r = 0 # Number of right turns
         for i in range(1, col_num):
+                sum_right = 0
+                sum_left = 0
                 for j in range(i, col_num):
-                        sum_left += data[j][0]
-                        sum_right += data[j][j]
+                        print data[j][r], data[j][j-l]
+                        sum_left += data[j][r]
+                        sum_right += data[j][j-l]
                 if sum_left > sum_right:
-                        S += data[i][0]
+                        l += 1
+                        print "L", data[i][r]
+                        S += data[i][r]
                 else:
-                        S += data[i][i]
+                        r += 1
+                        print "R", data[i][i-l]
+                        S += data[i][i-l]
         return S
 
 if __name__=="__main__":
