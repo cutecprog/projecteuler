@@ -4,8 +4,7 @@ test1 = """1
 7 8 9 10"""
 
 def main():
-        print gsum([[1],[2,3],[4,5,6]])
-        print atot(test1)
+        print gsum(atot(test1))
 
 def atot(a):
         """Converts a space delimited string to a 2d array (triangle).
