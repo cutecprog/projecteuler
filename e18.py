@@ -77,7 +77,7 @@ def gsum(data):
                 current = 0
                 l = 0
                 for j in range(col_num-1, -1, -1):
-                        print "i:",i,"j:",j,"l:",l
+                        print "i:", i, "j:", j, "l:", l, "S:", (j-1 != i-l)
                         if j-1 != i-l and i-l == 0 or data[j-1][i-l] > data[j-1][i-l-1]:
                                 current += data[j-1][i-l]
                         else:
