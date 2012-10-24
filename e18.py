@@ -71,31 +71,21 @@ def gsum(data):
         """Computes the greatest possible sum of one traversal of a triangle.
 
         """
-        S = data[0][0]
         col_num = len(data)
-        l = 0 # Number of left turns        
-        r = 0 # Number of right turns
-        for i in range(1, col_num):
-                sum_right = 0
-                sum_left = 0
-                depth = 0
-                for j in range(i, col_num):
-                        depth += 1
-                        #print data[j][r], data[j][j-l]
-                        sum_left += float(data[j][r]) / depth
-                        sum_right += float(data[j][j-l]) / depth 
-                #print "S", sum_left, sum_right
-                if sum_left > sum_right:
-                        l += 1
-                        #print "L"
-                        print "L", data[i][r]
-                        S += data[i][r]
-                else:
-                        r += 1
-                        #print "R"
-                        print "R", data[i][i-l]
-                        S += data[i][i-l]
-        return S
+        largest = 0
+        for i in range(0, col_num):
+                current = 0
+                l = 0
+                for j in range(col_num-1, -1, -1):
+                        print "i:",i,"j:",j,"l:",l
+                        if j-1 != i-l and i-l == 0 or data[j-1][i-l] > data[j-1][i-l-1]:
+                                current += data[j-1][i-l]
+                        else:
+                                current += data[j-1][i-l-1]
+                                l += 1
+                if current > largest:
+                        largest = current
+        return largest
 
 if __name__=="__main__":
         import re
