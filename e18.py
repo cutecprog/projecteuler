@@ -3,8 +3,43 @@ test1 = """3
 2 4 6
 8 5 9 3"""
 
+test2 = """75
+95 64
+17 47 82
+18 35 87 10
+20 04 82 47 65
+19 01 23 75 03 34
+88 02 77 73 07 63 67
+99 65 04 28 06 16 70 92
+41 41 26 56 83 40 80 70 33
+41 48 72 33 47 32 37 16 94 29
+53 71 44 65 25 43 91 52 97 51 14
+70 11 33 28 77 73 17 78 39 68 17 57
+91 71 52 38 17 14 91 43 58 50 27 29 48
+63 66 04 68 89 53 67 30 73 16 69 87 40 31
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
+
+test3 = """1
+0 1
+1 1 0
+1 1 0 0"""
+
 def main():
-        print gsum(atot(test1))
+        data2 = atot(test2)
+        print gsum(data2)
+        for n in data2:
+                print " " * (15-len(n)),
+                for o in n:
+                        print o / 50,
+                print " " * (15-len(n)),
+                print "  " * (15-len(n)),
+                for o in n:
+                        if o < 10:
+                                print "",
+                        print o, "",
+                print ""
+        
+        print gsum(atot(test3))
 
 def atot(a):
         """Converts a space delimited string to a 2d array (triangle).
@@ -21,8 +56,16 @@ def atot(a):
                 output[i-1].append(int(n))
                 j += 1
         return output
-                        
-        
+
+def pascal_triangle(row, col):
+        """Computes value of Pascal's triangle at row and column.
+
+        """
+        gray_theory = lambda last, row, col: last * ((row + 1) - col) / col
+        p = 1
+        for i in range(1, col):
+                p = gray_theory(p, row, i)
+        return p
 
 def gsum(data):
         """Computes the greatest possible sum of one traversal of a triangle.
@@ -35,20 +78,26 @@ def gsum(data):
         for i in range(1, col_num):
                 sum_right = 0
                 sum_left = 0
+                depth = 0
                 for j in range(i, col_num):
-                        print data[j][r], data[j][j-l]
-                        sum_left += data[j][r]
-                        sum_right += data[j][j-l]
+                        depth += 1
+                        #print data[j][r], data[j][j-l]
+                        sum_left += float(data[j][r]) / depth
+                        sum_right += float(data[j][j-l]) / depth 
+                #print "S", sum_left, sum_right
                 if sum_left > sum_right:
                         l += 1
+                        #print "L"
                         print "L", data[i][r]
                         S += data[i][r]
                 else:
                         r += 1
+                        #print "R"
                         print "R", data[i][i-l]
                         S += data[i][i-l]
         return S
 
 if __name__=="__main__":
         import re
+        from math import *
         main()
