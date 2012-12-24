@@ -27,7 +27,9 @@ test3 = """1
 def main():
         data2 = atot(test2)
         print gsum(data2)
-        for n in data2:
+        print gsum(atot(test3))
+        print gsum(atot(test1))
+        '''for n in data2:
                 print " " * (15-len(n)),
                 for o in n:
                         print o / 50,
@@ -37,9 +39,7 @@ def main():
                         if o < 10:
                                 print "",
                         print o, "",
-                print ""
-        
-        print gsum(atot(test3))
+                print ""'''
 
 def atot(a):
         """Converts a space delimited string to a 2d array (triangle).
@@ -57,16 +57,6 @@ def atot(a):
                 j += 1
         return output
 
-def pascal_triangle(row, col):
-        """Computes value of Pascal's triangle at row and column.
-
-        """
-        gray_theory = lambda last, row, col: last * ((row + 1) - col) / col
-        p = 1
-        for i in range(1, col):
-                p = gray_theory(p, row, i)
-        return p
-
 def gsum(data):
         """Computes the greatest possible sum of one traversal of a triangle.
 
@@ -76,13 +66,16 @@ def gsum(data):
         for i in range(0, col_num):
                 current = 0
                 l = 0
-                for j in range(col_num-1, -1, -1):
-                        print "i:", i, "j:", j, "l:", l, "S:", (j-1 != i-l)
-                        if j-1 != i-l and i-l == 0 or data[j-1][i-l] > data[j-1][i-l-1]:
+                for j in range(col_num, 0, -1):
+                        print "i:", i, "j:", j, "l:", l, "D:",
+                        if (j != i-l) and (i-l == 0 or data[j-1][i-l] > data[j-1][i-l-1]):
                                 current += data[j-1][i-l]
+                                print data[j-1][i-l]
                         else:
                                 current += data[j-1][i-l-1]
+                                print data[j-1][i-l-1]
                                 l += 1
+                print "Current:", current
                 if current > largest:
                         largest = current
         return largest
